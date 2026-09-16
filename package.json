@@ -15,7 +15,8 @@
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
     "probe:ecompras": "tsx scripts/probe-ecompras-catalog.ts",
-    "analyze:ecompras": "tsx scripts/analyze-ecompras-catalog.ts"
+    "analyze:ecompras": "tsx scripts/analyze-ecompras-catalog.ts",
+    "probe:ecompras:network": "tsx scripts/probe-ecompras-code.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.15.0",
