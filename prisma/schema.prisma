@@ -1,0 +1,134 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Lifecycle of a PCA managed by PCA Auto.
+enum PcaStatus {
+  DRAFT
+  READY
+  RUNNING
+  COMPLETED
+  BLOCKED
+  ERROR
+}
+
+/// Lifecycle of a PCA item. The state is persisted so execution can resume safely.
+enum PcaItemStatus {
+  PENDING
+  VALIDATED
+  IN_PROGRESS
+  COMPLETED
+  ERROR
+}
+
+/// Lifecycle of an execution batch.
+enum ExecutionStatus {
+  CREATED
+  RUNNING
+  COMPLETED
+  PARTIAL
+  ERROR
+}
+
+model Pca {
+  id        Int       @id @default(autoincrement())
+  ano       Int
+  unidade   String
+  nome      String
+  status    PcaStatus @default(DRAFT)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  items      PcaItem[]
+  executions Execution[]
+
+  @@index([ano])
+  @@index([status])
+  @@map("pca")
+}
+
+model CatalogItem {
+  id              Int      @id @default(autoincrement())
+  codigoCatalogo  String   @unique
+  itemId          Int
+  descricao       String
+  unidade         String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  /// The catalog item cache is intentionally small: only queried/used items are persisted.
+  pcaItems PcaItem[]
+
+  @@index([itemId])
+  @@map("catalog_item")
+}
+
+model PcaItem {
+  id             Int           @id @default(autoincrement())
+  pcaId          Int
+  catalogItemId  Int?
+  codigoCatalogo String
+  itemId         Int?
+  descricao      String?
+  unidade        String?
+  quantidade     Decimal?
+  valorEstimado  Decimal?
+  dataDesejada   DateTime?
+  prioridade     String?
+  modalidade     String?
+  statusExecucao PcaItemStatus @default(PENDING)
+  mensagemErro   String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  pca         Pca          @relation(fields: [pcaId], references: [id], onDelete: Cascade)
+  catalogItem CatalogItem? @relation(fields: [catalogItemId], references: [id], onDelete: SetNull)
+  executions  ExecutionItem[]
+
+  @@index([pcaId])
+  @@index([codigoCatalogo])
+  @@index([statusExecucao])
+  @@map("pca_item")
+}
+
+model Execution {
+  id           Int             @id @default(autoincrement())
+  pcaId        Int
+  inicio       DateTime        @default(now())
+  fim          DateTime?
+  status       ExecutionStatus @default(CREATED)
+  totalItens   Int             @default(0)
+  itensSucesso Int             @default(0)
+  itensErro    Int             @default(0)
+
+  pca   Pca             @relation(fields: [pcaId], references: [id], onDelete: Cascade)
+  items ExecutionItem[]
+
+  @@index([pcaId])
+  @@index([status])
+  @@map("execucao")
+}
+
+model ExecutionItem {
+  id          Int      @id @default(autoincrement())
+  executionId Int
+  pcaItemId   Int
+  inicio      DateTime @default(now())
+  fim         DateTime?
+  status      String
+  etapa       String
+  mensagem    String?
+
+  execution Execution @relation(fields: [executionId], references: [id], onDelete: Cascade)
+  pcaItem   PcaItem   @relation(fields: [pcaItemId], references: [id], onDelete: Cascade)
+
+  @@index([executionId])
+  @@index([pcaItemId])
+  @@index([status])
+  @@map("execucao_item")
+}
