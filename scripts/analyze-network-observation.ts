@@ -1,5 +1,35 @@
 import { readFile } from "node:fs/promises";
-import { isCatalogCandidate, extractObservedQuery, type ObservedRequest } from "@/src/infrastructure/ecompras/network-observation";
+import {
+  isCatalogCandidate,
+  extractObservedQuery,
+  type ObservedRequest,
+} from "@/src/infrastructure/ecompras/network-observation";
+
+interface ObservationEnvelope {
+  capturedAt?: string;
+  pageUrl?: string;
+  requests: ObservedRequest[];
+}
+
+function parseObservation(raw: string): ObservedRequest[] {
+  const parsed = JSON.parse(raw) as ObservedRequest[] | ObservationEnvelope;
+
+  if (Array.isArray(parsed)) {
+    return parsed;
+  }
+
+  if (
+    parsed &&
+    typeof parsed === "object" &&
+    Array.isArray(parsed.requests)
+  ) {
+    return parsed.requests;
+  }
+
+  throw new Error(
+    "O arquivo deve conter um array de requisições ou um objeto com a propriedade 'requests'.",
+  );
+}
 
 /**
  * Reads a network observation JSON file and prints only facts present in the
@@ -13,12 +43,9 @@ async function main(): Promise<void> {
   }
 
   const raw = await readFile(input, "utf8");
-  const requests = JSON.parse(raw) as ObservedRequest[];
-  if (!Array.isArray(requests)) {
-    throw new Error("O arquivo deve conter um array de requisições observadas.");
-  }
-
+  const requests = parseObservation(raw);
   const catalogRequests = requests.filter(isCatalogCandidate);
+
   console.log(`Requisições observadas: ${requests.length}`);
   console.log(`Candidatas à consulta do catálogo: ${catalogRequests.length}`);
 
