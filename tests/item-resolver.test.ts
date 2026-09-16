@@ -1,15 +1,20 @@
 import { describe, expect, it } from "vitest";
 import { ItemResolutionError, ItemResolver } from "@/src/application/items/item-resolver";
+import type { CatalogItem } from "@/src/domain/item/catalog-item";
 import type { EComprasAdapter } from "@/src/infrastructure/ecompras/ecompras-adapter";
 
 class FakeCatalogRepository {
-  constructor(private cached: Awaited<ReturnType<FakeCatalogRepository["findByCodigo"]>> = null) {}
+  private cached: CatalogItem | null;
 
-  async findByCodigo() {
+  constructor(cached: CatalogItem | null = null) {
+    this.cached = cached;
+  }
+
+  async findByCodigo(): Promise<CatalogItem | null> {
     return this.cached;
   }
 
-  async save(item: Awaited<ReturnType<FakeCatalogRepository["findByCodigo"]>> extends infer T ? Exclude<T, null> : never) {
+  async save(item: CatalogItem): Promise<CatalogItem> {
     this.cached = item;
     return item;
   }
