@@ -16,8 +16,9 @@ export interface PcaValidationResult {
 /**
  * Performs local validation before any interaction with the e-ComprasDF.
  *
- * This layer intentionally validates only rules supported by the current
- * project documentation. Portal-specific business rules are not guessed here.
+ * Only rules supported by the current PCA Auto documentation belong here.
+ * Portal-specific business rules are intentionally left to the integration
+ * layer and must not be guessed from the spreadsheet.
  */
 export class PcaValidator {
   validate(items: ImportedPcaItem[]): PcaValidationResult {
@@ -28,7 +29,7 @@ export class PcaValidator {
       issues.push({
         severity: "ERROR",
         field: "planilha",
-        message: "Nenhum item válido foi encontrado para processamento.",
+        message: "Nenhum item foi encontrado para processamento.",
       });
       return { valid: false, issues };
     }
@@ -43,30 +44,37 @@ export class PcaValidator {
           field: `linha ${row}.codigoCatalogo`,
           message: "Código de catálogo obrigatório.",
         });
-      } else if (seenCodes.has(codigo)) {
-        issues.push({
-          severity: "ERROR",
-          field: `linha ${row}.codigoCatalogo`,
-          message: `Código de catálogo duplicado: ${codigo}.`,
-        });
       } else {
-        seenCodes.add(codigo);
+        const normalizedCode = codigo.toLowerCase();
+        if (seenCodes.has(normalizedCode)) {
+          issues.push({
+            severity: "ERROR",
+            field: `linha ${row}.codigoCatalogo`,
+            message: `Código de catálogo duplicado: ${codigo}.`,
+          });
+        } else {
+          seenCodes.add(normalizedCode);
+        }
       }
 
-      if (item.quantidade !== undefined && item.quantidade <= 0) {
-        issues.push({
-          severity: "ERROR",
-          field: `linha ${row}.quantidade`,
-          message: "Quantidade deve ser maior que zero.",
-        });
+      if (item.quantidade !== undefined) {
+        if (!Number.isFinite(item.quantidade) || item.quantidade <= 0) {
+          issues.push({
+            severity: "ERROR",
+            field: `linha ${row}.quantidade`,
+            message: "Quantidade deve ser um número maior que zero.",
+          });
+        }
       }
 
-      if (item.valorEstimado !== undefined && item.valorEstimado < 0) {
-        issues.push({
-          severity: "ERROR",
-          field: `linha ${row}.valorEstimado`,
-          message: "Valor estimado não pode ser negativo.",
-        });
+      if (item.valorEstimado !== undefined) {
+        if (!Number.isFinite(item.valorEstimado) || item.valorEstimado < 0) {
+          issues.push({
+            severity: "ERROR",
+            field: `linha ${row}.valorEstimado`,
+            message: "Valor estimado deve ser um número não negativo.",
+          });
+        }
       }
 
       if (item.dataDesejada && Number.isNaN(item.dataDesejada.getTime())) {
