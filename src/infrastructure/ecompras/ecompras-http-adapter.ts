@@ -1,29 +1,53 @@
-import type { EComprasAdapter, ItemInclusionContext, ItemSubmission, ItemSubmissionResult } from "./ecompras-adapter";
+import type {
+  EComprasAdapter,
+  ItemInclusionContext,
+  ItemSubmission,
+  ItemSubmissionResult,
+} from "./ecompras-adapter";
 import type { CatalogLookupResult } from "@/src/domain/item/catalog-item";
 import { EComprasHttpClient } from "./ecompras-http-client";
 import { NodeCatalogParser } from "./catalog/catalog-parser-node";
 import type { CatalogSelectors } from "./catalog/catalog-parser";
 
 /**
+ * Explicit query configuration for a verified catalog request.
+ *
+ * `codigoParameter` must come from a real network capture. No portal query
+ * parameter is assumed by this adapter.
+ */
+export interface CatalogQueryConfig {
+  codigoParameter: string;
+  staticParameters?: Record<string, string>;
+}
+
+/**
  * HTTP adapter for the catalog portion of e-ComprasDF.
  *
- * This adapter intentionally supports catalog reads only. The query parameter
- * mapping and HTML selectors are configuration because neither has been
- * confirmed against a live request yet. Item submission remains blocked.
+ * Catalog reads are supported once the query parameter and HTML selectors have
+ * been explicitly configured from captured portal evidence. Item submission
+ * remains blocked.
  */
 export class EComprasHttpAdapter implements EComprasAdapter {
   public constructor(
     private readonly httpClient: EComprasHttpClient,
     private readonly catalogSelectors: CatalogSelectors,
-    private readonly catalogQuery: Record<string, string>,
-  ) {}
+    private readonly catalogQuery: CatalogQueryConfig,
+  ) {
+    if (!catalogQuery.codigoParameter.trim()) {
+      throw new Error("Parâmetro de código do catálogo não configurado.");
+    }
+  }
 
   async buscarItemPorCodigo(codigoCatalogo: string): Promise<CatalogLookupResult> {
-    const query = { ...this.catalogQuery };
-
-    if (query.Pesquisa === undefined) {
-      query.Pesquisa = codigoCatalogo;
+    const normalizedCode = codigoCatalogo.trim();
+    if (!normalizedCode) {
+      throw new Error("Código de catálogo não pode ser vazio.");
     }
+
+    const query = {
+      ...(this.catalogQuery.staticParameters ?? {}),
+      [this.catalogQuery.codigoParameter]: normalizedCode,
+    };
 
     const page = await this.httpClient.getCatalogPage(query);
     return new NodeCatalogParser(this.catalogSelectors).parse(page.html);
