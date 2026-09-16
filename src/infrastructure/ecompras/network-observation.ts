@@ -15,6 +15,15 @@ export interface ObservedRequest {
   timestamp: string;
 }
 
+/** Response metadata associated with an observed request. */
+export interface ObservedResponse {
+  url: string;
+  status: number;
+  contentType?: string | null;
+  bodyFile?: string;
+  timestamp: string;
+}
+
 export function isCatalogCandidate(request: ObservedRequest): boolean {
   return (
     request.method.toUpperCase() === "GET" &&
