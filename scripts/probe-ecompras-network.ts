@@ -42,6 +42,7 @@ async function main(): Promise<void> {
         url: request.url(),
         method: request.method(),
         resourceType: request.resourceType(),
+        timestamp: new Date().toISOString(),
       };
 
       if (!isCatalogCandidate(observedRequest)) return;
@@ -70,14 +71,20 @@ async function main(): Promise<void> {
 
     console.log("Página aberta:", page.url());
     console.log("Faça o login e pesquise manualmente o código conhecido.");
-    console.log("Depois pressione ENTER para salvar a evidência.");
+    console.log(
+      "Para comparar a busca, pesquise pelo menos dois códigos diferentes antes de pressionar ENTER.",
+    );
     await waitForEnter();
 
     await mkdir("artifacts/ecompras", { recursive: true });
     const output = `artifacts/ecompras/network-${Date.now()}.json`;
     await writeFile(
       output,
-      JSON.stringify({ capturedAt: new Date().toISOString(), requests, responses }, null, 2),
+      JSON.stringify(
+        { capturedAt: new Date().toISOString(), requests, responses },
+        null,
+        2,
+      ),
       "utf8",
     );
 
