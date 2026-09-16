@@ -1,27 +1,53 @@
 import type { CatalogItem, CatalogLookupResult } from "@/src/domain/item/catalog-item";
 
+/** Data prepared for the e-ComprasDF item-inclusion boundary. */
+export interface ItemInclusionContext {
+  itemId: number;
+}
+
+/** Payload accepted by the integration boundary once the real contract is verified. */
+export interface ItemSubmission {
+  itemId: number;
+  descricao: string;
+  unidade: string;
+  observacao?: string;
+}
+
+/** Result returned by an item submission attempt. */
+export interface ItemSubmissionResult {
+  confirmed: boolean;
+  message: string;
+}
+
 /**
  * Abstraction over the e-ComprasDF integration.
  *
- * Application code must depend on this contract rather than on Playwright,
- * HTTP clients or portal-specific DOM details. This keeps the portal boundary
- * replaceable when the integration strategy changes.
+ * Application code depends on this contract instead of Playwright, HTTP or
+ * portal-specific DOM details. The real transport implementation can therefore
+ * evolve without changing the PCA domain/application layers.
  */
 export interface EComprasAdapter {
   /**
    * Search the e-ComprasDF catalog using the catalog code.
    *
-   * The adapter returns all candidates. It must not silently choose between
-   * ambiguous results; that decision belongs to ItemResolver.
+   * All candidates are returned. Ambiguity is deliberately handled by
+   * ItemResolver rather than being silently resolved here.
    */
   buscarItemPorCodigo(codigoCatalogo: string): Promise<CatalogLookupResult>;
 
   /**
-   * Prepare access to the item inclusion form for a resolved ItemId.
+   * Prepare access to the item-inclusion form for an already resolved ItemId.
    *
-   * The concrete request/session details are intentionally not defined here
-   * until the real e-ComprasDF POST and authenticated-session behavior are
-   * captured and verified.
+   * Request/session details remain undefined until captured from the real portal.
    */
-  abrirFormularioInclusao(itemId: CatalogItem["itemId"]): Promise<void>;
+  prepareItemInclusion(itemId: CatalogItem["itemId"]): Promise<ItemInclusionContext>;
+
+  /**
+   * Submit a prepared item.
+   *
+   * This method exists as an explicit integration boundary, but production use
+   * remains disabled until the real POST, response and confirmation semantics
+   * are verified against the e-ComprasDF.
+   */
+  submitItem(data: ItemSubmission): Promise<ItemSubmissionResult>;
 }
