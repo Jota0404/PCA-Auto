@@ -83,7 +83,6 @@ export class SingleItemExecutionService {
         ...context,
         descricao: item.descricao ?? resolved.descricao,
         unidade: item.unidade ?? resolved.unidade,
-        observacao: item.mensagemErro ?? "",
       });
 
       if (!result.confirmed) {
