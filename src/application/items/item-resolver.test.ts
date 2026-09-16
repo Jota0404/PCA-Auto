@@ -21,8 +21,14 @@ function adapter(items: CatalogItem[]): EComprasAdapter {
     async buscarItemPorCodigo() {
       return { items };
     },
-    async abrirFormularioInclusao() {
-      return undefined;
+    async prepareItemInclusion(itemId: number) {
+      return { itemId };
+    },
+    async submitItem() {
+      return {
+        confirmed: false,
+        message: "Não utilizado neste teste.",
+      };
     },
   };
 }
@@ -51,7 +57,9 @@ describe("ItemResolver", () => {
   });
 
   it("bloqueia resultados ambíguos", async () => {
-    const resolver = new ItemResolver(adapter([validItem, { ...validItem, itemId: 9999 }]));
+    const resolver = new ItemResolver(
+      adapter([validItem, { ...validItem, itemId: 9999 }]),
+    );
 
     await expect(resolver.resolve(validItem.codigoCatalogo)).rejects.toBeInstanceOf(
       ItemResolutionError,
