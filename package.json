@@ -14,7 +14,8 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
-    "probe:ecompras": "tsx scripts/probe-ecompras-catalog.ts"
+    "probe:ecompras": "tsx scripts/probe-ecompras-catalog.ts",
+    "analyze:ecompras": "tsx scripts/analyze-ecompras-catalog.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.15.0",
@@ -29,9 +30,10 @@
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
+    "jsdom": "^26.1.0",
     "prisma": "^6.15.0",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2",
-    "vitest": "^3.2.4",
-    "tsx": "^4.20.5"
+    "vitest": "^3.2.4"
   }
 }
