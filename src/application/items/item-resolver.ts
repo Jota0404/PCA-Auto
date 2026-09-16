@@ -1,6 +1,7 @@
 import type { CatalogItem } from "@/src/domain/item/catalog-item";
 import type { EComprasAdapter } from "@/src/infrastructure/ecompras/ecompras-adapter";
 import { CatalogItemRepository } from "@/src/infrastructure/db/catalog-item-repository";
+import type { CatalogItemRepositoryPort } from "@/src/infrastructure/db/catalog-item-repository-interface";
 
 export class ItemResolutionError extends Error {
   constructor(message: string) {
@@ -19,7 +20,7 @@ export class ItemResolutionError extends Error {
 export class ItemResolver {
   constructor(
     private readonly eCompras: EComprasAdapter,
-    private readonly catalogRepository = new CatalogItemRepository(),
+    private readonly catalogRepository: CatalogItemRepositoryPort = new CatalogItemRepository(),
   ) {}
 
   async resolve(codigoCatalogo: string): Promise<CatalogItem> {
