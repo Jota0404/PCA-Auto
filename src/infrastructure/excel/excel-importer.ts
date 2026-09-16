@@ -39,11 +39,11 @@ export class ExcelImporter {
 
     const workbook = new ExcelJS.Workbook();
     try {
-      // ExcelJS currently exposes a Buffer type that is narrower than the
-      // generic Buffer emitted by recent @types/node versions. The runtime
-      // value is still the expected Node.js Buffer, so keep the boundary cast
-      // localized here rather than weakening the importer API.
-      await workbook.xlsx.load(buffer as unknown as Buffer);
+      // ExcelJS exposes a narrower Buffer type than recent @types/node.
+      // Convert through Uint8Array at this boundary without weakening the
+      // public importer contract or changing the runtime bytes.
+      const bytes = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+      await workbook.xlsx.load(bytes);
     } catch (error) {
       throw new ExcelImportError(
         `Não foi possível ler o arquivo Excel: ${this.errorMessage(error)}`,
