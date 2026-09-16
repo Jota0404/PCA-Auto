@@ -5,8 +5,8 @@
  * execution repository/logger so an interrupted run can be inspected and
  * resumed later. The first MVP only enables the controlled simulation mode.
  */
-import type { EComprasAdapter } from "@/infrastructure/ecompras/ecompras-adapter";
-import type { PcaItem } from "@/domain/pca/pca-item";
+import type { EComprasAdapter } from "@/src/infrastructure/ecompras/ecompras-adapter";
+import type { PcaItem } from "@/src/domain/pca/pca-item";
 
 export type ExecutionMode = "SIMULATION" | "PRODUCTION";
 
