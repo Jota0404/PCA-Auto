@@ -83,7 +83,7 @@ export class ImportPca {
   }
 
   private validateMetadata(input: ImportPcaInput): void {
-    if (!Number.isInteger(input.ano) || input.ano < 2000) {
+    if (!Number.isInteger(input.ano)) {
       throw new PcaImportError("Ano do PCA inválido.");
     }
 
