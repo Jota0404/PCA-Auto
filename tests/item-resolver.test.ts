@@ -2,13 +2,21 @@ import { describe, expect, it } from "vitest";
 import { ItemResolutionError, ItemResolver } from "@/src/application/items/item-resolver";
 import type { EComprasAdapter } from "@/src/infrastructure/ecompras/ecompras-adapter";
 
-function adapterWith(items: Awaited<ReturnType<EComprasAdapter["buscarItemPorCodigo"]>>["items"]): EComprasAdapter {
+function adapterWith(
+  items: Awaited<ReturnType<EComprasAdapter["buscarItemPorCodigo"]>>["items"],
+): EComprasAdapter {
   return {
     async buscarItemPorCodigo() {
       return { items };
     },
-    async abrirFormularioInclusao() {
-      return undefined;
+    async prepareItemInclusion(itemId: number) {
+      return { itemId };
+    },
+    async submitItem() {
+      return {
+        confirmed: false,
+        message: "Não utilizado neste teste.",
+      };
     },
   };
 }
