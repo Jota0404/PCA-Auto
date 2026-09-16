@@ -39,10 +39,14 @@ export class ExcelImporter {
 
     const workbook = new ExcelJS.Workbook();
     try {
-      // The installed ExcelJS typings require Buffer here. The importer already
-      // receives a Node Buffer, so pass it directly instead of coercing it to a
-      // different binary type.
-      await workbook.xlsx.load(buffer);
+      // ExcelJS 4.4.0 declares a Node Buffer shape that is incompatible with
+      // the newer @types/node Buffer generic. Runtime expects the same bytes,
+      // so isolate the typing mismatch at this dependency boundary instead of
+      // weakening the importer API or changing the input data.
+      const excelBuffer = buffer as unknown as Parameters<
+        typeof workbook.xlsx.load
+      >[0];
+      await workbook.xlsx.load(excelBuffer);
     } catch (error) {
       throw new ExcelImportError(
         `Não foi possível ler o arquivo Excel: ${this.errorMessage(error)}`,
