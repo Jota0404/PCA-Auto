@@ -1,5 +1,12 @@
-import type { CatalogLookupResult } from "@/src/domain/item/catalog-item";
-import type { EComprasAdapter } from "./ecompras-adapter";
+import type {
+  CatalogLookupResult,
+} from "@/src/domain/item/catalog-item";
+import type {
+  EComprasAdapter,
+  ItemInclusionContext,
+  ItemSubmission,
+  ItemSubmissionResult,
+} from "./ecompras-adapter";
 
 /**
  * Deterministic adapter used while the real e-ComprasDF request/response
@@ -21,11 +28,25 @@ export class MockEComprasAdapter implements EComprasAdapter {
     };
   }
 
-  async abrirFormularioInclusao(itemId: number): Promise<void> {
-    // In simulation mode this only proves that the resolved ItemId reached
-    // the integration boundary. No network call is performed.
+  async prepareItemInclusion(itemId: number): Promise<ItemInclusionContext> {
     if (!Number.isInteger(itemId) || itemId <= 0) {
       throw new Error("ItemId inválido.");
     }
+
+    return { itemId };
+  }
+
+  async submitItem(data: ItemSubmission): Promise<ItemSubmissionResult> {
+    if (!Number.isInteger(data.itemId) || data.itemId <= 0) {
+      throw new Error("ItemId inválido.");
+    }
+
+    // Production submission is intentionally not simulated as a success. A
+    // caller using the mock must explicitly remain in SIMULATION mode.
+    return {
+      confirmed: false,
+      message:
+        "Mock adapter não envia dados ao e-ComprasDF. Use SIMULATION enquanto a integração real não estiver validada.",
+    };
   }
 }
