@@ -17,7 +17,8 @@
     "probe:ecompras": "tsx scripts/probe-ecompras-catalog.ts",
     "probe:ecompras:network": "tsx scripts/probe-ecompras-network.ts",
     "analyze:ecompras": "tsx scripts/analyze-ecompras-catalog.ts",
-    "analyze:ecompras:network": "tsx scripts/analyze-network-observation.ts"
+    "analyze:ecompras:network": "tsx scripts/analyze-network-observation.ts",
+    "simulate:pca": "tsx scripts/run-pca-simulation.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.15.0",
