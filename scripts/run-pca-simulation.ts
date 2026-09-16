@@ -89,9 +89,32 @@ async function main(): Promise<void> {
 
   const result = await runner.run(item, "SIMULATION");
 
+  // The simulation flow itself is complete even though the PCA item is kept
+  // IN_PROGRESS because no official submission/confirmation occurred. The
+  // execution batch therefore gets a terminal status without pretending the
+  // portal operation completed.
+  await executionRepository.finish(
+    executionId,
+    result.success ? "COMPLETED" : "ERROR",
+    0,
+    result.success ? 0 : 1,
+  );
+
   const persistedItem = await prisma.pcaItem.findUnique({
     where: { id: item.id },
     select: { id: true, statusExecucao: true, itemId: true, mensagemErro: true },
+  });
+
+  const persistedExecution = await prisma.execution.findUnique({
+    where: { id: executionId },
+    select: {
+      id: true,
+      status: true,
+      totalItens: true,
+      itensSucesso: true,
+      itensErro: true,
+      fim: true,
+    },
   });
 
   const persistedLogs = await prisma.executionItem.findMany({
@@ -108,6 +131,7 @@ async function main(): Promise<void> {
   console.log(`Etapa final: ${result.stage}`);
   console.log(`Mensagem: ${result.message}`);
   console.log("Estado persistido do item:", persistedItem);
+  console.log("Execução persistida:", persistedExecution);
   console.log("Logs persistidos:", persistedLogs);
   console.log("===========================\n");
   console.log(
