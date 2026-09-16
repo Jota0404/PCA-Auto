@@ -18,6 +18,8 @@ export class NodeCatalogParser {
       throw new CatalogParseError("Resposta HTML do catálogo está vazia.");
     }
 
+    this.validateSelectors();
+
     const dom = new JSDOM(html);
     const document = dom.window.document;
     const results = Array.from(
@@ -29,12 +31,26 @@ export class NodeCatalogParser {
     };
   }
 
+  private validateSelectors(): void {
+    const entries: Array<[keyof CatalogSelectors, string]> = [
+      ["result", this.selectors.result],
+      ["codigo", this.selectors.codigo],
+      ["itemId", this.selectors.itemId],
+      ["descricao", this.selectors.descricao],
+      ["unidade", this.selectors.unidade],
+    ];
+
+    for (const [key, selector] of entries) {
+      if (!selector.trim()) {
+        throw new CatalogParseError(
+          `Seletor de ${key} não configurado; os seletores reais precisam ser confirmados.`,
+        );
+      }
+    }
+  }
+
   private parseResult(node: Element): CatalogItem {
     const read = (selector: string, label: string): string => {
-      if (!selector.trim()) {
-        throw new CatalogParseError(`Seletor de ${label} não configurado.`);
-      }
-
       const value = node.querySelector(selector)?.textContent?.trim() ?? "";
       if (!value) {
         throw new CatalogParseError(
