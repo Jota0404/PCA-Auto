@@ -13,7 +13,8 @@
     "test:watch": "vitest",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "probe:ecompras": "tsx scripts/probe-ecompras-catalog.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.15.0",
@@ -30,6 +31,7 @@
     "@types/react-dom": "^19.1.9",
     "prisma": "^6.15.0",
     "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "tsx": "^4.20.5"
   }
 }
