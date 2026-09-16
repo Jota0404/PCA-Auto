@@ -24,11 +24,13 @@ export class CatalogParseError extends Error {
 /**
  * Parses a catalog HTML fragment using selectors captured from the real portal.
  *
- * This parser is deliberately strict: missing or duplicated required values
+ * This parser is deliberately strict: missing selectors or required values
  * are surfaced as errors instead of being guessed or silently normalized.
  */
 export class CatalogParser {
-  constructor(private readonly selectors: CatalogSelectors) {}
+  constructor(private readonly selectors: CatalogSelectors) {
+    this.validateSelectors();
+  }
 
   parse(html: string): CatalogLookupResult {
     if (!html.trim()) {
@@ -42,37 +44,51 @@ export class CatalogParser {
     }
 
     const document = new DOMParser().parseFromString(html, "text/html");
-    const resultNodes = Array.from(document.querySelectorAll(this.selectors.result));
+    const resultNodes = Array.from(
+      document.querySelectorAll(this.selectors.result),
+    );
 
     return {
       items: resultNodes.map((node) => this.parseResultNode(node)),
     };
   }
 
+  private validateSelectors(): void {
+    for (const [name, selector] of Object.entries(this.selectors)) {
+      if (!selector.trim()) {
+        throw new CatalogParseError(`Seletor de ${name} não configurado.`);
+      }
+    }
+  }
+
   private parseResultNode(node: Element): CatalogItem {
     const codigo = this.readRequired(node, this.selectors.codigo, "código");
     const itemIdText = this.readRequired(node, this.selectors.itemId, "ItemId");
-    const descricao = this.readRequired(node, this.selectors.descricao, "descrição");
+    const descricao = this.readRequired(
+      node,
+      this.selectors.descricao,
+      "descrição",
+    );
     const unidade = this.readRequired(node, this.selectors.unidade, "unidade");
     const itemId = Number(itemIdText);
 
     if (!Number.isInteger(itemId) || itemId <= 0) {
-      throw new CatalogParseError(`ItemId inválido no resultado do catálogo: ${itemIdText}`);
+      throw new CatalogParseError(
+        `ItemId inválido no resultado do catálogo: ${itemIdText}`,
+      );
     }
 
     return { codigoCatalogo: codigo, itemId, descricao, unidade };
   }
 
   private readRequired(node: Element, selector: string, label: string): string {
-    if (!selector.trim()) {
-      throw new CatalogParseError(`Seletor de ${label} não configurado.`);
-    }
-
     const element = node.querySelector(selector);
     const value = element?.textContent?.trim() ?? "";
 
     if (!value) {
-      throw new CatalogParseError(`Campo ${label} não encontrado no resultado.`);
+      throw new CatalogParseError(
+        `Campo ${label} não encontrado no resultado.`,
+      );
     }
 
     return value;
