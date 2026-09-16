@@ -12,6 +12,14 @@ Este documento evita que hipóteses da investigação sejam tratadas como compor
 - A tela de inclusão observada está em `/ecompras/consultaitens/IncluirItem/?ItemId=...`.
 - O formulário de inclusão observado utiliza `POST` e `multipart/form-data`.
 
+## Implementado no PCA Auto
+
+- Cliente HTTP isolado para acesso de baixo nível ao portal.
+- Sessão Playwright separada para login manual e investigação controlada.
+- Cache local de itens resolvidos no PostgreSQL.
+- `ItemResolver` consulta primeiro o cache e só depois o portal.
+- Parser do catálogo possui contrato explícito, mas não assume seletores HTML ainda não confirmados.
+
 ## Ainda não confirmado
 
 - Qual parâmetro representa definitivamente uma busca por código de catálogo.
