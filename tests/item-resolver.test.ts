@@ -1,8 +1,19 @@
 import { describe, expect, it } from "vitest";
 import { ItemResolutionError, ItemResolver } from "@/src/application/items/item-resolver";
 import type { EComprasAdapter } from "@/src/infrastructure/ecompras/ecompras-adapter";
-import type { CatalogItem } from "@/src/domain/item/catalog-item";
-import type { CatalogItemRepositoryPort } from "@/src/infrastructure/db/catalog-item-repository-interface";
+
+class FakeCatalogRepository {
+  constructor(private cached: Awaited<ReturnType<FakeCatalogRepository["findByCodigo"]>> = null) {}
+
+  async findByCodigo() {
+    return this.cached;
+  }
+
+  async save(item: Awaited<ReturnType<FakeCatalogRepository["findByCodigo"]>> extends infer T ? Exclude<T, null> : never) {
+    this.cached = item;
+    return item;
+  }
+}
 
 function adapterWith(
   items: Awaited<ReturnType<EComprasAdapter["buscarItemPorCodigo"]>>["items"],
@@ -23,17 +34,6 @@ function adapterWith(
   };
 }
 
-function emptyRepository(): CatalogItemRepositoryPort {
-  return {
-    async findByCodigo() {
-      return null;
-    },
-    async save(item: CatalogItem) {
-      return item;
-    },
-  };
-}
-
 describe("ItemResolver", () => {
   const validItem = {
     codigoCatalogo: "ITEM-001",
@@ -43,16 +43,13 @@ describe("ItemResolver", () => {
   };
 
   it("returns the only exact catalog match", async () => {
-    const resolver = new ItemResolver(
-      adapterWith([validItem]),
-      emptyRepository(),
-    );
+    const resolver = new ItemResolver(adapterWith([validItem]), new FakeCatalogRepository());
 
     await expect(resolver.resolve("ITEM-001")).resolves.toEqual(validItem);
   });
 
   it("blocks when no item is found", async () => {
-    const resolver = new ItemResolver(adapterWith([]), emptyRepository());
+    const resolver = new ItemResolver(adapterWith([]), new FakeCatalogRepository());
 
     await expect(resolver.resolve("ITEM-001")).rejects.toBeInstanceOf(
       ItemResolutionError,
@@ -62,7 +59,7 @@ describe("ItemResolver", () => {
   it("blocks ambiguous results", async () => {
     const resolver = new ItemResolver(
       adapterWith([validItem, { ...validItem, itemId: 9999 }]),
-      emptyRepository(),
+      new FakeCatalogRepository(),
     );
 
     await expect(resolver.resolve("ITEM-001")).rejects.toThrow(
@@ -73,7 +70,7 @@ describe("ItemResolver", () => {
   it("blocks invalid ItemId", async () => {
     const resolver = new ItemResolver(
       adapterWith([{ ...validItem, itemId: 0 }]),
-      emptyRepository(),
+      new FakeCatalogRepository(),
     );
 
     await expect(resolver.resolve("ITEM-001")).rejects.toThrow(
@@ -84,7 +81,7 @@ describe("ItemResolver", () => {
   it("blocks missing description or unit", async () => {
     const resolver = new ItemResolver(
       adapterWith([{ ...validItem, descricao: "" }]),
-      emptyRepository(),
+      new FakeCatalogRepository(),
     );
 
     await expect(resolver.resolve("ITEM-001")).rejects.toThrow(
