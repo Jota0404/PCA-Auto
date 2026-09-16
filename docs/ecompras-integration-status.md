@@ -18,15 +18,17 @@ Este documento evita que hipóteses da investigação sejam tratadas como compor
 - Sessão Playwright separada para login manual e investigação controlada.
 - Cache local de itens resolvidos no PostgreSQL.
 - `ItemResolver` consulta primeiro o cache e só depois o portal.
-- Parser do catálogo possui contrato explícito, mas não assume seletores HTML ainda não confirmados.
+- Parser de catálogo para runtime Node com `jsdom`.
+- `EComprasHttpAdapter` conecta consulta HTML ao contrato `EComprasAdapter`.
+- Envio real continua bloqueado por código.
 
 ## Ainda não confirmado
 
 - Qual parâmetro representa definitivamente uma busca por código de catálogo.
 - Estrutura HTML estável dos resultados do catálogo.
-- Regra exata para extrair `ItemId`, descrição e unidade de uma resposta real.
+- Seletores reais para extrair `ItemId`, descrição e unidade de uma resposta real.
 - Headers adicionais necessários para uma sessão real.
-- Cookies e mecanismo de sessão necessários.
+- Cookies e mecanismo de sessão necessários para reutilizar autenticação via HTTP.
 - POST final completo de `/consultaitens/IncluirItem`.
 - Resposta e redirects após o POST.
 - Critério técnico de confirmação de sucesso.
@@ -34,4 +36,4 @@ Este documento evita que hipóteses da investigação sejam tratadas como compor
 
 ## Regra de implementação
 
-O código deve permanecer no modo de investigação até que esses pontos sejam capturados e verificados. Nenhum parser deve ser criado com seletores inventados e nenhuma chamada de produção deve ser habilitada com base apenas em hipóteses.
+O código deve permanecer no modo de investigação até que esses pontos sejam capturados e verificados. Nenhum parser deve ser habilitado com seletores inventados e nenhuma chamada de produção deve ser habilitada com base apenas em hipóteses.
