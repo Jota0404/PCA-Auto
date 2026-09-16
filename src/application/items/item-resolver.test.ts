@@ -59,6 +59,7 @@ describe("ItemResolver", () => {
   it("bloqueia resultados ambíguos", async () => {
     const resolver = new ItemResolver(
       adapter([validItem, { ...validItem, itemId: 9999 }]),
+      new FakeCatalogRepository(),
     );
 
     await expect(resolver.resolve(validItem.codigoCatalogo)).rejects.toBeInstanceOf(
