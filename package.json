@@ -1,0 +1,32 @@
+{
+  "name": "pca-auto",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MVP interno para preparação, validação e automação controlada do PCA no e-ComprasDF.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.15.0",
+    "exceljs": "^4.4.0",
+    "next": "^15.5.2",
+    "playwright": "^1.55.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "prisma": "^6.15.0",
+    "typescript": "^5.9.2"
+  }
+}
