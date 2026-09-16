@@ -20,11 +20,14 @@ Este documento evita que hipóteses da investigação sejam tratadas como compor
 - `ItemResolver` consulta primeiro o cache e só depois o portal.
 - Parser de catálogo para runtime Node com `jsdom`.
 - `EComprasHttpAdapter` conecta consulta HTML ao contrato `EComprasAdapter`.
+- O adapter exige explicitamente o nome do parâmetro de consulta usado para o código; não existe fallback automático para `Pesquisa`.
+- O analisador de evidência de rede aceita tanto um array simples quanto um envelope contendo `requests`.
+- Testes automatizados cobrem montagem da consulta e bloqueio de código vazio.
 - Envio real continua bloqueado por código.
 
 ## Ainda não confirmado
 
-- Qual parâmetro representa definitivamente uma busca por código de catálogo.
+- Qual parâmetro representa definitivamente uma busca por código de catálogo em uma captura real do portal.
 - Estrutura HTML estável dos resultados do catálogo.
 - Seletores reais para extrair `ItemId`, descrição e unidade de uma resposta real.
 - Headers adicionais necessários para uma sessão real.
