@@ -1,5 +1,6 @@
 import type { CatalogItem } from "@/src/domain/item/catalog-item";
 import type { EComprasAdapter } from "@/src/infrastructure/ecompras/ecompras-adapter";
+import { CatalogItemRepository } from "@/src/infrastructure/db/catalog-item-repository";
 
 export class ItemResolutionError extends Error {
   constructor(message: string) {
@@ -9,19 +10,29 @@ export class ItemResolutionError extends Error {
 }
 
 /**
- * Resolves a PCA catalog code into one and only one catalog item.
+ * Resolves a catalog code into exactly one validated catalog item.
  *
- * The resolver deliberately treats zero or multiple candidates as errors.
- * Automatic selection from ambiguous catalog results is unsafe for the MVP.
+ * Resolution first checks the local cache. A portal lookup is only required
+ * when the item is not already known. Ambiguous or incomplete portal results
+ * are treated as errors and never selected automatically.
  */
 export class ItemResolver {
-  constructor(private readonly eCompras: EComprasAdapter) {}
+  constructor(
+    private readonly eCompras: EComprasAdapter,
+    private readonly catalogRepository = new CatalogItemRepository(),
+  ) {}
 
   async resolve(codigoCatalogo: string): Promise<CatalogItem> {
     const codigo = codigoCatalogo.trim();
 
     if (!codigo) {
       throw new ItemResolutionError("Código de catálogo não informado.");
+    }
+
+    const cached = await this.catalogRepository.findByCodigo(codigo);
+    if (cached) {
+      this.validateItem(cached, codigo);
+      return cached;
     }
 
     const result = await this.eCompras.buscarItemPorCodigo(codigo);
@@ -39,7 +50,12 @@ export class ItemResolver {
     }
 
     const [item] = result.items;
+    this.validateItem(item, codigo);
 
+    return this.catalogRepository.save(item);
+  }
+
+  private validateItem(item: CatalogItem, codigo: string): void {
     if (item.codigoCatalogo !== codigo) {
       throw new ItemResolutionError(
         `O resultado retornado não corresponde ao código solicitado: ${codigo}.`,
@@ -47,21 +63,15 @@ export class ItemResolver {
     }
 
     if (!Number.isInteger(item.itemId) || item.itemId <= 0) {
-      throw new ItemResolutionError(
-        `ItemId inválido para o código ${codigo}.`,
-      );
+      throw new ItemResolutionError(`ItemId inválido para o código ${codigo}.`);
     }
 
     if (!item.descricao.trim()) {
-      throw new ItemResolutionError(
-        `Descrição ausente para o código ${codigo}.`,
-      );
+      throw new ItemResolutionError(`Descrição ausente para o código ${codigo}.`);
     }
 
     if (!item.unidade.trim()) {
       throw new ItemResolutionError(`Unidade ausente para o código ${codigo}.`);
     }
-
-    return item;
   }
 }
