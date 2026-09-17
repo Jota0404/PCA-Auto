@@ -216,11 +216,14 @@ button { cursor: pointer; }
 .pca-footer-note { text-align: center; color: #9aa5ae; font-size: 10px; margin-top: 28px; }
 
 @media (max-width: 1050px) {
-  .pca-sidebar { width: 76px; padding-inline: 10px; }
-  .pca-brand { justify-content: center; padding-inline: 0; }
-  .pca-brand-copy, .pca-nav-label, .pca-nav-item span:not(.pca-nav-icon), .pca-sidebar-footer { display: none; }
-  .pca-nav-item { justify-content: center; text-align: center; }
-  .pca-content { margin-left: 76px; }
+  .pca-sidebar { width: 210px; padding: 18px 12px; }
+  .pca-brand { padding-inline: 6px; }
+  .pca-brand-title { font-size: 16px; }
+  .pca-brand-subtitle { font-size: 10px; }
+  .pca-nav-label { padding-inline: 8px; }
+  .pca-nav-item { font-size: 12px; }
+  .pca-content { margin-left: 210px; }
+  .pca-main { padding-inline: 24px; }
   .pca-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pca-settings-grid { grid-template-columns: 1fr; }
 }
