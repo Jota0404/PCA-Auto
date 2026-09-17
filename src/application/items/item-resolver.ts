@@ -11,11 +11,13 @@ export class ItemResolutionError extends Error {
 }
 
 /**
- * Resolves a catalog code into exactly one validated catalog item.
+ * Resolves and validates the technical identity of a catalog code that was
+ * already supplied by the PCA input source (currently the Excel file).
  *
- * Resolution first checks the local cache. A portal lookup is only required
- * when the item is not already known. Ambiguous or incomplete portal results
- * are treated as errors and never selected automatically.
+ * The resolver does not discover or choose a catalog code. It only checks the
+ * local cache and, when necessary, asks the portal for the identity associated
+ * with the supplied code. Ambiguous or incomplete portal results are treated
+ * as errors and never selected automatically.
  */
 export class ItemResolver {
   constructor(
