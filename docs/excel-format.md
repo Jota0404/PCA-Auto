@@ -2,7 +2,11 @@
 
 ## Objetivo
 
-Este documento define o contrato de entrada usado pelo importador do PCA Auto. Ele descreve apenas o que o MVP atualmente conhece e não deve ser interpretado como definição dos campos obrigatórios do e-ComprasDF.
+Este documento define o contrato de entrada usado pelo importador do PCA Auto.
+
+No MVP atual, o **Excel é a fonte de verdade dos códigos de catálogo**. O PCA Auto não deve descobrir ou substituir o código informado na planilha por uma descrição pesquisada no e-ComprasDF.
+
+O importador continua responsável somente por converter os valores da planilha para o modelo interno. A validação de negócio acontece depois da importação.
 
 ## Aba utilizada
 
@@ -14,15 +18,33 @@ A primeira linha é tratada como cabeçalho.
 
 | Coluna | Nome normalizado | Tratamento |
 |---|---|---|
-| Código | `codigo` | Obrigatória pelo importador |
+| Código | `codigo` | Obrigatória pelo importador e fonte do código do item |
 | Descrição | `descricao` | Opcional na importação |
 | Quantidade | `quantidade` | Número, quando informada |
 | Valor | `valor` | Número, quando informado |
 | Data desejada | `data desejada` | Data Excel, quando informada |
 | Prioridade | `prioridade` | Texto, quando informado |
-| Modalidade | `modalidade` | Texto, quando informada |
+| Modalidade | `modalidade` | Texto, quando informado |
 
 A comparação dos cabeçalhos ignora maiúsculas/minúsculas e acentuação.
+
+## Fonte dos códigos
+
+O código informado no Excel deve ser preservado durante todo o fluxo.
+
+```text
+Excel
+  ↓
+codigoCatalogo
+  ↓
+validação
+  ↓
+execução
+```
+
+O PCA Auto **não deve pesquisar por descrição para descobrir outro código**.
+
+Caso a integração com o e-ComprasDF precise de um identificador interno (`ItemId`) para executar o lançamento, essa etapa é tratada separadamente da origem do código. O código continua sendo o valor fornecido pela planilha.
 
 ## Regras de segurança do importador
 
@@ -31,7 +53,8 @@ A comparação dos cabeçalhos ignora maiúsculas/minúsculas e acentuação.
 - valores numéricos não reconhecidos geram erro de importação;
 - datas em formatos de texto não são interpretadas por aproximação;
 - o importador não consulta o e-ComprasDF;
-- o importador não decide se um item está apto para execução.
+- o importador não decide se um item está apto para execução;
+- o importador não altera o código fornecido na planilha.
 
 ## Exemplo
 
@@ -42,3 +65,15 @@ Código | Descrição | Quantidade | Valor | Data desejada | Prioridade | Modali
 ```
 
 O exemplo acima é uma representação da documentação do projeto. Como o significado exato de `data desejada` no fluxo do e-ComprasDF ainda não foi confirmado, o importador não converte automaticamente um texto como `03/2027` em uma data específica.
+
+## Futuro: PDF
+
+PDF pode ser adicionado posteriormente como outro formato de entrada. Ele deverá produzir o mesmo modelo interno usado pelo Excel, sem alterar as regras de validação ou execução.
+
+```text
+Excel ──┐
+        ├──> modelo interno ──> validação ──> execução
+PDF ────┘
+```
+
+A importação por PDF não faz parte do MVP atual.
