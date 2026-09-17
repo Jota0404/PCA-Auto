@@ -17,6 +17,19 @@
   }
 }
 
+/* Subtle outline around sidebar navigation buttons. */
+.pca-nav-item {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pca-nav-item:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.pca-nav-item.active {
+  border-color: rgba(40, 181, 158, 0.22);
+}
+
 .pca-link-button:focus-visible,
 .pca-nav-item:focus-visible {
   outline: 2px solid #86c8bf;
