@@ -18,11 +18,49 @@ src/infrastructure/         PostgreSQL, Excel e e-ComprasDF
 
 A camada de aplicação não deve acessar diretamente DOM, Playwright ou detalhes HTTP do portal.
 
+## Entrada de dados
+
+No MVP atual, o Excel é a fonte de verdade dos códigos de catálogo.
+
+```text
+Excel
+  ↓
+importação
+  ↓
+normalização
+  ↓
+validação
+  ↓
+PCA interno
+```
+
+O sistema não deve descobrir códigos por descrição nem substituir silenciosamente o código fornecido pela planilha.
+
+PDF poderá ser adicionado futuramente como outro adaptador de entrada, produzindo o mesmo modelo interno.
+
 ## Limite do e-ComprasDF
 
-`EComprasAdapter` é a fronteira da aplicação com o sistema oficial. O contrato expõe apenas operações que já fazem sentido para o fluxo documentado.
+`EComprasAdapter` é a fronteira da aplicação com o sistema oficial.
+
+O e-ComprasDF recebe os dados já preparados pelo PCA Auto. Quando a integração exigir um identificador interno diferente do código de catálogo (`ItemId`), a resolução desse identificador continua sendo responsabilidade da integração, sem alterar a origem do código informado no Excel.
 
 A implementação real de HTTP/Playwright ainda deve ser feita somente após confirmação do request, sessão, resposta e mecanismo de confirmação do portal.
+
+## Resolução de identidade do item
+
+`ItemResolver` não é responsável por descobrir qual código deve ser usado. O código já vem da entrada do PCA.
+
+Sua responsabilidade, quando necessária, é resolver e validar a identidade técnica correspondente ao código fornecido, por exemplo:
+
+```text
+codigoCatalogo fornecido pelo Excel
+          ↓
+cache local / e-ComprasDF
+          ↓
+ItemId + dados de identificação
+```
+
+Nenhum resultado ambíguo deve ser escolhido automaticamente.
 
 ## Estados
 
