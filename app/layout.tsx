@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./pca-overrides.css";
+import "./sidebar-overrides.css";
 
 export const metadata: Metadata = {
   title: "PCA Auto | Painel",
