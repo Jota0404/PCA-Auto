@@ -1,0 +1,24 @@
+/* Responsive corrections for the compact sidebar. */
+
+@media (max-width: 1050px) and (min-width: 761px) {
+  .pca-nav-item > span:first-child {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pca-nav-item > span:last-child {
+    display: none !important;
+  }
+
+  .pca-nav-item {
+    justify-content: center;
+    padding-inline: 0;
+  }
+}
+
+.pca-link-button:focus-visible,
+.pca-nav-item:focus-visible {
+  outline: 2px solid #86c8bf;
+  outline-offset: 2px;
+}
