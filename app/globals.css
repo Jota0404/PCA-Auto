@@ -74,9 +74,13 @@ button { cursor: pointer; }
   align-items: center;
   gap: 11px;
   min-height: 44px;
+  width: 100%;
   padding: 0 12px;
   color: #b8c7d1;
+  border: 0;
   border-radius: 10px;
+  background: transparent;
+  text-align: left;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
@@ -141,6 +145,7 @@ button { cursor: pointer; }
 .pca-panel-title { font-size: 14px; font-weight: 800; margin: 0; }
 .pca-panel-note { color: var(--muted); font-size: 10px; margin-top: 4px; }
 .pca-link { color: var(--primary); font-size: 11px; font-weight: 800; text-decoration: none; }
+.pca-link-button { border: 0; background: transparent; padding: 0; cursor: pointer; }
 
 .pca-table-wrap { overflow-x: auto; }
 .pca-table { width: 100%; border-collapse: collapse; min-width: 650px; }
@@ -186,6 +191,27 @@ button { cursor: pointer; }
 .pca-upload-icon svg { width: 19px; height: 19px; }
 .pca-upload-title { font-size: 12px; font-weight: 800; }
 .pca-upload-note { color: var(--muted); font-size: 10px; margin-top: 3px; }
+.pca-upload-file { color: var(--primary-dark); font-size: 10px; font-weight: 700; margin-top: 4px; }
+.pca-file-input { display: none; }
+.pca-empty { padding: 42px 16px; color: var(--muted); font-size: 12px; text-align: center; background: var(--surface-soft); border-radius: 12px; }
+
+.pca-modal-backdrop { position: fixed; inset: 0; z-index: 30; background: rgba(10, 26, 36, .46); display: grid; place-items: center; padding: 20px; backdrop-filter: blur(4px); }
+.pca-modal { width: min(520px, 100%); padding: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 25px 80px rgba(11, 31, 42, .22); }
+.pca-modal-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+.pca-modal-head h2 { font-family: "Space Grotesk", Inter, sans-serif; font-size: 24px; letter-spacing: -.025em; margin: 0; }
+.pca-modal-close { width: 32px; height: 32px; border: 1px solid var(--border); border-radius: 9px; background: #fff; color: var(--muted); font-size: 20px; line-height: 1; }
+.pca-form-grid { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 14px; margin-top: 22px; }
+.pca-form-grid label { display: grid; gap: 7px; }
+.pca-form-grid label span { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; }
+.pca-form-grid input { width: 100%; min-height: 42px; border: 1px solid var(--border); border-radius: 10px; background: #fff; padding: 0 12px; outline: none; color: var(--text); }
+.pca-form-grid input:focus { border-color: #86c8bf; box-shadow: 0 0 0 3px var(--primary-soft); }
+.pca-form-full { grid-column: 1 / -1; }
+.pca-modal-note { margin-top: 18px; padding: 12px 14px; border-radius: 10px; background: var(--surface-soft); color: var(--muted); font-size: 10px; line-height: 1.5; }
+.pca-toast { position: fixed; right: 24px; bottom: 24px; z-index: 40; max-width: min(380px, calc(100vw - 48px)); padding: 12px 15px; border-radius: 11px; background: #10202b; color: #fff; box-shadow: 0 12px 28px rgba(16, 32, 43, .2); font-size: 11px; font-weight: 700; }
+.pca-settings-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+.pca-settings-grid > div { padding: 16px; background: var(--surface-soft); border-radius: 12px; border: 1px solid #edf1f3; display: grid; gap: 6px; }
+.pca-settings-label { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .07em; font-weight: 800; }
+.pca-settings-grid strong { font-size: 12px; line-height: 1.4; }
 
 .pca-footer-note { text-align: center; color: #9aa5ae; font-size: 10px; margin-top: 28px; }
 
@@ -193,9 +219,10 @@ button { cursor: pointer; }
   .pca-sidebar { width: 76px; padding-inline: 10px; }
   .pca-brand { justify-content: center; padding-inline: 0; }
   .pca-brand-copy, .pca-nav-label, .pca-nav-item span:not(.pca-nav-icon), .pca-sidebar-footer { display: none; }
-  .pca-nav-item { justify-content: center; }
+  .pca-nav-item { justify-content: center; text-align: center; }
   .pca-content { margin-left: 76px; }
   .pca-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pca-settings-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 760px) {
@@ -206,6 +233,8 @@ button { cursor: pointer; }
   .pca-kpis, .pca-layout { grid-template-columns: 1fr; }
   .pca-upload { align-items: flex-start; flex-direction: column; }
   .pca-user-copy { display: none; }
+  .pca-form-grid { grid-template-columns: 1fr; }
+  .pca-form-full { grid-column: auto; }
 }
 
 @media (max-width: 560px) {
