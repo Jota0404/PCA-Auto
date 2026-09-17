@@ -2,12 +2,49 @@
 
 Este documento evita que hipóteses da investigação sejam tratadas como comportamento confirmado.
 
+## Papel atual da integração
+
+O **código de catálogo não é descoberto pelo PCA Auto**. No MVP atual, o código é fornecido pelo Excel e deve ser preservado como fonte de verdade.
+
+A integração com o e-ComprasDF continua necessária para executar o lançamento e, caso o fluxo exija, resolver o identificador interno (`ItemId`) correspondente ao código já fornecido.
+
+## Evidências e rotas observadas
+
+### Rota histórica investigada
+
+Foi anteriormente observada a rota:
+
+```text
+/ecompras/Consultantes/Pesquisar
+```
+
+Essa rota chegou a responder `200` durante uma investigação anterior autenticada, mas uma chamada HTTP direta atual sem o mesmo contexto de sessão retornou `404`. Portanto, ela não deve ser tratada como rota pública estável do MVP.
+
+### Rota atualmente observada no navegador
+
+Em 17/09/2026 foi observada, na tela **COMPRAS DF - Consulta de Itens**, a URL:
+
+```text
+/ecompras/ConsultaItens/Pesquisar
+```
+
+com parâmetros:
+
+```text
+TipoCatalogo=1
+TipoConsulta=2
+Pesquisa=a
+TipoConsulta2=
+Pesquisa2=
+TipoConsulta3=
+Pesquisa3=
+btnConsultarAgrupamentoPesquisa=
+```
+
+Essa observação confirma a existência da rota na interface atual, mas ainda não comprova que uma requisição HTTP isolada reproduza o comportamento sem sessão autenticada.
+
 ## Confirmado pela investigação anterior
 
-- Consulta do catálogo na rota `/ecompras/Consultantes/Pesquisar`.
-- A consulta observada utiliza `GET`.
-- A resposta observada é HTML (`text/html`).
-- Foram observados parâmetros como `TipoCatalogo`, `TipoConsulta`, `Pesquisa`, `TipoConsulta2`, `Pesquisa2`, `TipoConsulta3`, `Pesquisa3` e `btnConsultarAgrupamentoPesquisa`.
 - Existe um identificador interno `ItemId` separado do código completo do catálogo.
 - A tela de inclusão observada está em `/ecompras/consultaitens/IncluirItem/?ItemId=...`.
 - O formulário de inclusão observado utiliza `POST` e `multipart/form-data`.
@@ -17,18 +54,17 @@ Este documento evita que hipóteses da investigação sejam tratadas como compor
 - Cliente HTTP isolado para acesso de baixo nível ao portal.
 - Sessão Playwright separada para login manual e investigação controlada.
 - Cache local de itens resolvidos no PostgreSQL.
-- `ItemResolver` consulta primeiro o cache e só depois o portal.
+- `ItemResolver` consulta primeiro o cache e só depois o portal quando precisa resolver a identidade técnica do código fornecido.
 - Parser de catálogo para runtime Node com `jsdom`.
 - `EComprasHttpAdapter` conecta consulta HTML ao contrato `EComprasAdapter`.
-- O adapter exige explicitamente o nome do parâmetro de consulta usado para o código; não existe fallback automático para `Pesquisa`.
-- O analisador de evidência de rede aceita tanto um array simples quanto um envelope contendo `requests`.
-- Testes automatizados cobrem montagem da consulta e bloqueio de código vazio.
+- O importador Excel não consulta o e-ComprasDF.
+- O código informado no Excel não é substituído pela integração.
 - Envio real continua bloqueado por código.
 
 ## Ainda não confirmado
 
-- Qual parâmetro representa definitivamente uma busca por código de catálogo em uma captura real do portal.
-- Estrutura HTML estável dos resultados do catálogo.
+- Como consultar de forma estável o catálogo por um código já fornecido pelo Excel.
+- Estrutura HTML estável dos resultados da consulta atual.
 - Seletores reais para extrair `ItemId`, descrição e unidade de uma resposta real.
 - Headers adicionais necessários para uma sessão real.
 - Cookies e mecanismo de sessão necessários para reutilizar autenticação via HTTP.
@@ -39,4 +75,6 @@ Este documento evita que hipóteses da investigação sejam tratadas como compor
 
 ## Regra de implementação
 
-O código deve permanecer no modo de investigação até que esses pontos sejam capturados e verificados. Nenhum parser deve ser habilitado com seletores inventados e nenhuma chamada de produção deve ser habilitada com base apenas em hipóteses.
+A integração deve permanecer no modo de investigação até que esses pontos sejam capturados e verificados. Nenhum parser deve ser habilitado com seletores inventados e nenhuma chamada de produção deve ser habilitada com base apenas em hipóteses.
+
+A mudança para um Excel com os códigos já definidos reduz a dependência da consulta de descoberta do catálogo, mas **não elimina automaticamente a necessidade de resolver `ItemId` ou confirmar os dados antes do lançamento**.
