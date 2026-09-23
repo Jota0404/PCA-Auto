@@ -141,6 +141,26 @@ Consulte [DER](./docs/04-der.md) e [Dicionário de Dados](./docs/05-dicionario-d
 | [User Stories](./docs/06-user-stories.md) | histórias para backlog |
 | [Plano de Testes](./docs/07-plano-de-testes.md) | testes e critérios de aceitação |
 
+## 10. O que ainda falta
+
+A documentação já possui um registro formal das lacunas do produto. As principais são:
+
+- Excel real da Candangolândia;
+- processo operacional real;
+- schema definitivo da entrada;
+- regras locais de validação e consolidação;
+- participantes e permissões internas;
+- formato definitivo da saída “PCA pronto”;
+- baseline de tempo, erros e retrabalho;
+- fluxo HTTP autenticado completo do e-ComprasDF;
+- resolução exata de \`ItemId\`;
+- critério técnico de confirmação da operação;
+- máquina de estados definitiva do fluxo externo;
+- segurança e infraestrutura de produção;
+- política de retenção e metas de desempenho.
+
+Consulte [Lacunas e Evidências](./docs/08-lacunas-evidencias.md) para a lista completa, prioridade e evidência necessária para fechar cada ponto.
+
 ## 10. Documentação técnica complementar
 
 - [Status da documentação](./docs/status.md)
