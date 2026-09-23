@@ -1,7 +1,7 @@
 # PCA-Auto — Backlog estratégico e técnico
 
 **Status:** PARCIALMENTE DEFINIDO  
-**Última atualização:** 2026-09-22
+**Última atualização:** 2026-09-23
 
 ## P0 — Bloqueia a validação
 
@@ -15,19 +15,19 @@
 ### P0-03 — Fechar schema de entrada
 **Objetivo:** transformar o Excel real em contrato versionado.
 
-### P0-04 — Parser e normalização reais
-**Objetivo:** importar dados sem depender dos mocks atuais.
+### P0-04 — Validar parser e normalização com dados reais
+**Objetivo:** confrontar a implementação atual de importação/normalização com o Excel real, identificando lacunas e variações.
 
-### P0-05 — Validação inicial
-**Objetivo:** aplicar as primeiras regras reais de estrutura e negócio.
+### P0-05 — Validar regras iniciais e fechar regras reais
+**Objetivo:** confrontar as regras já implementadas com casos reais e adicionar somente regras sustentadas por evidência.
 
-### P0-06 — Saída "PCA pronto"
+### P0-06 — Validar saída "PCA pronto"
 **Objetivo:** entregar valor do Nível 1 sem depender da execução automática no e-ComprasDF.
 
 ## P1 — Necessário para o piloto ter evidência
 
 ### P1-01 — Revisão de pendências
-### P1-02 — Persistência real
+### P1-02 — Validar persistência real no fluxo completo
 ### P1-03 — Medição formal antes/depois
 ### P1-04 — Auditoria mínima
 ### P1-05 — Investigação definitiva do e-ComprasDF
