@@ -1,14 +1,15 @@
 # PCA-Auto — Banco de dados
 
 **Status:** PARCIALMENTE DEFINIDO  
-**Última atualização:** 2026-09-22
+**Última atualização:** 2026-09-23
 
 ## Estado atual
 
 - PostgreSQL é o banco escolhido.
 - Prisma é o ORM.
-- O domínio já identifica conceitos como PCA, PcaItem e Batch.
-- O schema definitivo ainda não foi fechado.
+- O schema vigente possui os modelos `Pca`, `PcaItem`, `CatalogItem`, `Execution` e `ExecutionItem`.
+- O modelo persistido atual não possui uma entidade `Batch` separada.
+- O schema definitivo do produto ainda pode evoluir após validação do processo real.
 
 ## Princípios
 
@@ -19,24 +20,28 @@
 - separar histórico/auditoria quando necessário;
 - evitar modelar capacidades enterprise antes da validação.
 
-## Entidades candidatas
+## Entidades persistidas atuais
 
-### PCA
+### Pca
 Plano de Contratações Anual.
 
 ### PcaItem
 Necessidade/linha do PCA.
 
-### Batch
-Unidade de importação/processamento.
+### CatalogItem
+Representação do item de catálogo relacionada ao PCA quando aplicável.
 
-### AuditEvent
-Evento de auditoria de negócio.
+### Execution
+Unidade persistida de execução/processamento.
 
-### ExecutionEvent
-Evento relacionado à execução técnica/operacional.
+### ExecutionItem
+Item associado a uma execução.
 
-Essas entidades são conceituais até que o fluxo real e os requisitos definitivos sejam validados.
+## Conceitos ainda não persistidos como modelo próprio
+
+O termo `Batch` aparece em documentação conceitual anterior como unidade de processamento/importação/execução em lote. O schema vigente não possui esse modelo.
+
+Até que exista uma decisão específica, usar `Execution`/ `ExecutionItem` ao descrever o modelo persistido atual.
 
 ## Pendente
 
