@@ -4,7 +4,7 @@ Esta pasta contém a documentação técnica e de produto do PCA-Auto.
 
 ## Pacote principal para registro do produto
 
-Os oito documentos abaixo formam a documentação central do produto nesta versão:
+Os oito documentos abaixo formam a documentação central de registro do produto nesta versão:
 
 1. [Documento de Visão e Escopo](./01-visao-e-escopo.md)
 2. [Especificação de Requisitos de Software — ERS](./02-ers.md)
@@ -19,6 +19,10 @@ Os oito documentos abaixo formam a documentação central do produto nesta vers�
 **Data:** 2026-09-22
 
 > O pacote é completo como baseline documental, mas não pretende ocultar lacunas que ainda dependem do processo real da Candangolândia, do Excel real e da comprovação da integração autenticada com o e-ComprasDF.
+
+## Entrada recomendada para desenvolvedores
+
+Comece por [09 — Onboarding de Desenvolvedor](./09-onboarding-desenvolvedor.md). Ele apresenta o objetivo do produto, o fluxo, a arquitetura, o modelo de dados, as fronteiras da integração e a ordem recomendada de leitura dos demais documentos.
 
 ## Controle de lacunas
 
