@@ -1,6 +1,11 @@
 # Status da integração com o e-ComprasDF
 
+**Status:** PRECISA DE PESQUISA + VALIDAÇÃO  
+**Última atualização:** 2026-09-22
+
 Este documento evita que hipóteses da investigação sejam tratadas como comportamento confirmado.
+
+Para o estado geral do projeto, consulte [`docs/status.md`](./status.md).
 
 ## Papel atual da integração
 
@@ -46,7 +51,7 @@ Essa observação confirma a existência da rota na interface atual, mas ainda n
 ## Confirmado pela investigação anterior
 
 - Existe um identificador interno `ItemId` separado do código completo do catálogo.
-- A tela de inclusão observada está em `/ecompras/consultaitens/IncluirItem/?ItemId=...`.
+- A tela de inclusão observada está em `/consultaitens/IncluirItem/?ItemId=...`.
 - O formulário de inclusão observado utiliza `POST` e `multipart/form-data`.
 
 ## Implementado no PCA Auto
@@ -72,9 +77,23 @@ Essa observação confirma a existência da rota na interface atual, mas ainda n
 - Resposta e redirects após o POST.
 - Critério técnico de confirmação de sucesso.
 - Fluxo específico de lançamento do PCA.
+- Eventuais proteções ou políticas do portal que limitem automação.
 
 ## Regra de implementação
 
 A integração deve permanecer no modo de investigação até que esses pontos sejam capturados e verificados. Nenhum parser deve ser habilitado com seletores inventados e nenhuma chamada de produção deve ser habilitada com base apenas em hipóteses.
 
 A mudança para um Excel com os códigos já definidos reduz a dependência da consulta de descoberta do catálogo, mas **não elimina automaticamente a necessidade de resolver `ItemId` ou confirmar os dados antes do lançamento**.
+
+## Evidência necessária para produção
+
+Antes de habilitar execução real, deve existir evidência reproduzível de:
+
+1. sessão válida;
+2. request real;
+3. payload;
+4. resposta;
+5. redirects;
+6. critério de confirmação;
+7. comportamento em erro;
+8. comportamento de retomada.
