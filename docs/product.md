@@ -1,7 +1,7 @@
 # PCA-Auto — Produto
 
 **Status:** PARCIALMENTE DEFINIDO  
-**Última atualização:** 2026-09-22
+**Última atualização:** 2026-09-23
 
 ## 1. Visão
 
@@ -42,12 +42,16 @@ Pendências
   ↓
 Revisão humana
   ↓
+Consolidação
+  ↓
 PCA pronto
 ```
 
 O Nível 1 deve entregar valor mesmo sem escrever automaticamente no e-ComprasDF.
 
 O sistema deve conseguir gerar um resultado utilizável pelo servidor para conclusão manual do processo, sem que a integração externa seja condição para provar o valor do produto.
+
+A consolidação aparece no fluxo do Nível 1 porque a pesquisa do processo registrada em `docs/current-process.md` identificou consolidação como etapa relevante em referências normativas e institucionais. A forma exata como ela ocorre na Candangolândia ainda precisa ser validada.
 
 ## 4. Nível 2 — PCA-Auto Integrado
 
