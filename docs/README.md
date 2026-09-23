@@ -20,6 +20,10 @@ Os oito documentos abaixo formam a documentação central do produto nesta vers�
 
 > O pacote é completo como baseline documental, mas não pretende ocultar lacunas que ainda dependem do processo real da Candangolândia, do Excel real e da comprovação da integração autenticada com o e-ComprasDF.
 
+## Controle de lacunas
+
+- [Lacunas e Evidências](./08-lacunas-evidencias.md) — registro central das pendências, impacto, evidência necessária e ordem recomendada de fechamento.
+
 ## Documento de controle
 
 - [Status da documentação](./status.md)
