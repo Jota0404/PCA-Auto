@@ -2,7 +2,7 @@
 
 > Documento vivo de governança técnica. Ele registra o que já está definido, o que ainda é hipótese e quais evidências precisam ser obtidas antes de fechar a documentação definitiva.
 
-**Status geral:** baseline documental 0.9 + validação do produto e consolidação técnica  
+**Status geral:** baseline documental 0.9 + reconciliação documentação ↔ implementação  
 **Última atualização:** 2026-09-23
 
 ## Pacote documental principal
@@ -18,7 +18,28 @@
 | 07 — Plano de Testes | BASELINE | critérios gerais e casos principais |
 | README.md | BASELINE | entrada principal do projeto |
 | 08 — Lacunas e Evidências | CONTROLE | registro central do que ainda falta |
-| 09 — Onboarding de Desenvolvedor | BASELINE | guia de entrada baseado na documentação existente |
+| 09 — Onboarding de Desenvolvedor | BASELINE EM REVISÃO | guia de entrada alinhado ao estado atual conhecido do código |
+
+## Fonte formal de requisitos
+
+`docs/02-ers.md` é a fonte formal vigente para identificadores e requisitos.
+
+`docs/requirements.md` permanece como documento de apoio/histórico. Seus `RF-XXX` não devem ser usados para novas referências.
+
+## O que foi reconciliado nesta etapa
+
+A documentação foi atualizada para refletir fatos já verificados no código:
+
+- importação XLSX já implementada;
+- normalização já implementada;
+- persistência da importação já implementada;
+- regras básicas de validação já implementadas;
+- endpoint interno de importação existente;
+- schema persistido baseado em `Execution`/`ExecutionItem`, sem modelo `Batch` separado;
+- fluxo de produto do Nível 1 inclui consolidação como etapa conceitual;
+- ressalva sobre a rota histórica do e-ComprasDF registrada no documento de investigação.
+
+Essas atualizações não significam que o processo real da Candangolândia esteja validado.
 
 ## Regra de promoção para DEFINIDO
 
