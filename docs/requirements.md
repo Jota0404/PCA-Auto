@@ -69,29 +69,53 @@ Um item só pode receber estado `COMPLETED` quando existir confirmação verific
 
 **Status:** DEFINIDO.
 
-## 2. Requisitos para execução futura
+## 2. Requisitos específicos do fluxo do DF
 
-### RF-011 — Resolver identidade técnica
+A Portaria SEEC nº 421/2026 estabelece que o responsável pelo preenchimento, ao registrar um item no e-ComprasDF, informa:
+
+- quantidade anual esperada;
+- estimativa preliminar e simplificada do valor;
+- modalidade preliminar prevista;
+- data desejada para aquisição/contratação;
+- grau de prioridade.
+
+O item deve usar o catálogo do e-ComprasDF e sua descrição deve evitar generalidades.
+
+**Status:** REFERÊNCIA NORMATIVA CONFIRMADA; aderência à entrada real da Candangolândia ainda precisa ser validada.
+
+Fonte: [Portaria SEEC nº 421/2026](https://www.sinj.df.gov.br/sinj/Norma/2835d0c90f214ce2b758a39a1dc78e70/seec_prt_421_2026.html).
+
+### RF-011 — Tratar ausência de item no catálogo
+
+O sistema deve ser capaz de sinalizar que um item não foi encontrado no catálogo e, em evolução futura, apoiar o fluxo de solicitação de catalogação.
+
+**Status:** HIPÓTESE DE PRODUTO / PRECISA DE VALIDAÇÃO.
+
+A Portaria nº 421/2026 prevê solicitação de catalogação no próprio e-ComprasDF, com resultados possíveis de atendimento, devolução para ajustes ou negativa.
+
+## 3. Requisitos para execução futura
+
+### RF-012 — Resolver identidade técnica
 
 Quando necessário, a integração deve resolver o `ItemId` correspondente ao código fornecido sem alterar a origem do código.
 
 **Status:** HIPÓTESE DE INTEGRAÇÃO; depende de evidência real.
 
-### RF-012 — Simular execução
+### RF-013 — Simular execução
 
 A integração deve possuir modo de simulação antes da produção.
 
 **Status:** DEFINIDO como princípio/arquitetura.
 
-### RF-013 — Registrar erros de execução
+### RF-014 — Registrar erros de execução
 
 Falhas devem ser persistidas com etapa e contexto suficientes para investigação.
 
 **Status:** PARCIALMENTE DEFINIDO.
 
-## 3. Requisitos de auditoria
+## 4. Requisitos de auditoria
 
-### RF-014 — Auditoria de negócio
+### RF-015 — Auditoria de negócio
 
 Registrar eventos relevantes, incluindo pelo menos:
 
@@ -105,25 +129,31 @@ Registrar eventos relevantes, incluindo pelo menos:
 
 **Status:** PARCIALMENTE DEFINIDO — schema ainda não fechado.
 
-### RF-015 — Diferenciar log técnico e auditoria
+### RF-016 — Diferenciar log técnico e auditoria
 
 Logs de infraestrutura não substituem a trilha de auditoria de negócio.
 
 **Status:** DEFINIDO.
 
-## 4. Requisitos ainda dependentes do piloto
+## 5. Requisitos ainda dependentes do processo local
 
-- regras completas de validação;
-- campos obrigatórios reais;
-- comportamento esperado para dados incompletos;
-- modelo de revisão humana;
-- estados definitivos de Item/PCA/Batch;
-- versionamento do PCA;
-- critérios numéricos de aceitação;
-- volume e desempenho necessários;
-- necessidade real de perfis/permissões adicionais.
+A pesquisa normativa não permite afirmar que a Candangolândia possui exatamente o mesmo conjunto de artefatos ou etapas internas de outros órgãos.
 
-## 5. Requisitos não funcionais
+Ainda precisamos descobrir:
+
+- existência e formato de DFD/PPCA ou equivalente local;
+- origem das demandas;
+- responsáveis por levantamento e consolidação;
+- existência de análise técnica;
+- necessidade de justificativa formal;
+- tratamento de dependências/interdependências;
+- método de estimativa preliminar;
+- método de priorização;
+- processo de aprovação antes do e-ComprasDF;
+- uso de SEI no fluxo;
+- estratégia para demandas sem catálogo.
+
+## 6. Requisitos não funcionais
 
 Ainda não há limiares definitivos para:
 
@@ -137,7 +167,7 @@ Ainda não há limiares definitivos para:
 
 Esses requisitos devem ser especificados quando houver evidência suficiente para um ambiente persistente de produção.
 
-## 6. Rastreabilidade
+## 7. Rastreabilidade
 
 Todo requisito novo deve ter:
 
