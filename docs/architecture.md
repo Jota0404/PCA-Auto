@@ -1,8 +1,13 @@
 # PCA Auto — Arquitetura de Implementação
 
+**Status:** DEFINIDO (base)  
+**Última atualização:** 2026-09-22
+
 ## Objetivo
 
 Este documento registra as decisões estruturais do MVP para facilitar manutenção, revisão técnica e evolução futura.
+
+Para o estado geral da documentação, consulte [`docs/status.md`](./status.md).
 
 ## Camadas
 
@@ -89,3 +94,9 @@ Cada etapa relevante deve ser registrada. O objetivo não é produzir logs gené
 Quando houver ambiguidade, resposta inesperada ou inconsistência entre dados locais e portal, o sistema deve falhar de forma explícita e registrar a etapa do erro.
 
 Não existe fallback automático para escolher um resultado ambíguo.
+
+## Decisões relacionadas
+
+- [ADR-001 — Excel como fonte de verdade dos códigos](./decisions/ADR-001-excel-como-fonte-de-verdade.md)
+- [ADR-002 — e-ComprasDF isolado por adapter](./decisions/ADR-002-ecomprasdf-como-adapter.md)
+- [ADR-003 — Não decidir silenciosamente em caso de ambiguidade](./decisions/ADR-003-ambiguidade-e-confirmacao.md)

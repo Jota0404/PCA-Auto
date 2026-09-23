@@ -1,5 +1,10 @@
 # Formato de entrada Excel — MVP
 
+**Status:** PRECISA DE VALIDAÇÃO  
+**Última atualização:** 2026-09-22
+
+> Este documento descreve o contrato atualmente implementado no importador, mas ainda não deve ser considerado o schema definitivo até que um Excel real da Candangolândia seja processado e suas variações sejam observadas.
+
 ## Objetivo
 
 Este documento define o contrato de entrada usado pelo importador do PCA Auto.
@@ -77,3 +82,7 @@ PDF ────┘
 ```
 
 A importação por PDF não faz parte do MVP atual.
+
+## Próxima evidência
+
+O próximo passo é processar um Excel real da Candangolândia, registrar as colunas/variações efetivamente encontradas e promover este documento para um schema versionado apenas quando houver evidência suficiente.
