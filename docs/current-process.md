@@ -379,3 +379,167 @@ Requisitos definitivos
 ```
 
 O Excel real deve ser incorporado nessa etapa como evidência da entrada de dados.
+
+
+## 13. Evidências adicionais: outros órgãos do DF e outros entes
+
+A pesquisa ampliada permite detalhar melhor como o trabalho acontece **antes, durante e depois** do registro do PCA.
+
+### 13.1 Outros órgãos do DF: o fluxo é distribuído
+
+A Portaria nº 267/2025 da Secretaria de Estado de Justiça e Cidadania do DF mostra uma estrutura em camadas:
+
+- cada subsecretaria elabora e registra suas próprias demandas;
+- cada demandante indica um servidor titular e um substituto para cadastrar e gerenciar as demandas;
+- a área técnica de aquisições atua como Gestora do PCA;
+- a Unidade de Administração consolida as demandas das subsecretarias em um Documento Consolidador de Demanda;
+- a análise da demanda inclui pertinência, conveniência, necessidade e consolidação de demandas comuns.
+
+Isso indica que, em uma organização maior, a informação pode passar por **múltiplas mãos antes de chegar ao registro final do PCA**.
+
+Fonte: [Portaria nº 267/2025 — SINJ/DF](https://www.sinj.df.gov.br/sinj/Norma/e065c4cd1e0a4c21a4a8ce3b6ff6ec47/Portaria_267_24_03_2025.html).
+
+### 13.2 SEDET/DF: vários gestores e responsáveis pelo preenchimento
+
+A Portaria SEDET nº 77/2025 designou gestores do PCA por subsecretaria e informou que os indicados dessas unidades seriam os responsáveis pelo preenchimento. Também determinou o levantamento e registro das necessidades e recomendou analisar o agrupamento de demandas em **Grupos de Acompanhamento de Demandas (GADs)**.
+
+A evidência é relevante porque mostra que o modelo operacional não precisa ser "uma pessoa fazendo tudo": pode existir uma estrutura distribuída de responsáveis pelo levantamento, inserção e consolidação.
+
+Fonte: [Portaria SEDET nº 77/2025 — SINJ/DF](https://www.sinj.df.gov.br/sinj/TextoArquivoDiario.aspx?id_file=797edd0d-e9f3-32a2-9895-61b46062ae63).
+
+### 13.3 Administrações Regionais do DF: o sistema admite múltiplos operadores
+
+A regulamentação operacional de 2026 do e-ComprasDF permite que cada órgão/entidade cadastre mais de um servidor com perfil de Gestor do PCA e múltiplos servidores com perfil de preenchimento, conforme a conveniência e a complexidade da estrutura. Isso é especialmente relevante para estruturas descentralizadas, como Administrações Regionais.
+
+Em publicação do DODF de junho de 2026, a própria Administração Regional de Samambaia aparece no contexto do cadastramento dos usuários do PCA, incluindo o processo SEI específico necessário para os perfis do sistema.
+
+Fonte: [Portaria SEEC nº 421/2026 — SINJ/DF](https://www.sinj.df.gov.br/sinj/Norma/2835d0c90f214ce2b758a39a1dc78e70/seec_prt_421_2026.html) e [DODF nº 107/2026](https://www.sinj.df.gov.br/sinj/Diario/24f91937-0c3d-36a0-af00-4a18bff5ef82/visualizar-pdf%2012.pdf).
+
+### 13.4 Candangolândia: há evidência pública de uso efetivo do PCA
+
+Não foi encontrada, na web aberta, uma portaria específica da Administração Regional da Candangolândia descrevendo **passo a passo do processo interno de elaboração do PCA**.
+
+Entretanto, há evidência documental de que a RA-CAND efetivamente utiliza o PCA em suas contratações. Um Termo de Referência publicado pela própria Administração Regional em 2025 registra o ID do PCA no PNCP, a data de publicação, o ID do item no PCA, a classe/grupo e o identificador da futura contratação.
+
+Isso confirma a existência de um fluxo interno que consegue levar uma necessidade da RA-CAND até um item rastreável no PCA, mas **não revela como o item foi coletado, revisado ou inserido internamente**.
+
+Fonte: [Termo de Referência da Administração Regional da Candangolândia](https://candangolandia.df.gov.br/documents/d/administra%C3%A7%C3%A3o-regional-da-candangol%C3%A2ndia/sei_169809767_termo_de_referencia_2).
+
+### 13.5 Outros estados: o DFD e a consolidação continuam aparecendo
+
+O padrão não é exclusivo do DF.
+
+No Ministério da Agricultura e Pecuária, a orientação pública informa que o DFD é preenchido pela área requisitante e enviado ao setor de contratações, que analisa, consolida e encaminha as demandas para aprovação da autoridade competente.
+
+Fonte: [MAPA — PCA / DFD](https://www.gov.br/agricultura/pt-br/acesso-a-informacao/licitacoes-e-contratos/plano-de-contratacoes-anual/mapa-sede-uasg-130005).
+
+No Espírito Santo, o PCA consolidado da Secretaria de Estado de Desenvolvimento publica explicitamente a **área responsável pela consolidação** e mantém, por item, o setor demandante, objeto, unidade de medida, quantidade, valor preliminar, tipo de contratação, prazo, prioridade, classificação orçamentária, fonte e responsável pela contratação/fiscalização. Isso evidencia uma cadeia de informação entre o setor que origina a necessidade e a unidade que consolida o PCA.
+
+Fonte: [SEDES/ES — PCA 2026](https://sedes.es.gov.br/Media/Sedes/aa/PCA%203%C2%BA%20Vers%C3%A3o.pdf).
+
+Em Roraima, a Secretaria de Estado de Licitação e Contratação mantém página específica com PCA consolidado, fluxograma estadual e materiais do ciclo anual, reforçando a existência de um processo formal de coleta/consolidação/acompanhamento além do mero registro de itens.
+
+Fonte: [SELC/RR — PCA](https://selc.rr.gov.br/plano-de-contratacao-anual-pca/).
+
+### 13.6 São Paulo: unidades descentralizadas elaboram seus próprios PCAs
+
+Uma portaria da Secretaria Municipal de Educação de São Paulo para o PCA 2027 determina que cada unidade descentralizada elabore o seu PCA separadamente, com compilação posterior pelo órgão central. O mesmo ato estrutura um Comitê PCA e um Grupo de Trabalho para apoiar as unidades requisitantes e define um conjunto de campos que o DFD deve conter.
+
+Na mesma linha, a Prefeitura de São Paulo oferece oficinas específicas para ensinar os setores a organizar o PCA e os procedimentos de cada unidade.
+
+Fontes: [Portaria SME nº 6.428/2026](https://legislacao.prefeitura.sp.gov.br/portaria-secretaria-municipal-de-educacao-sme-6428-de-28-de-maio-de-2026) e [Portal de Compras de São Paulo — Oficinas PCA](https://compras.prefeitura.sp.gov.br/oficinas-virtuais-2025/).
+
+### 13.7 Minas Gerais: planilhas e orientação presencial continuam fazendo parte do processo
+
+O Tribunal de Contas de Minas Gerais divulgou, para o PCA 2026, encontros específicos com as unidades de pedido para explicar o fluxo e as informações exigidas. A instituição informou que seriam realizadas **oficinas presenciais** para facilitar o preenchimento do DFD-P e de outras planilhas.
+
+Essa evidência é importante porque mostra que, mesmo em ambientes com sistemas próprios, o trabalho de preparação dos dados pode continuar dependendo de orientação, formulários e planilhas auxiliares.
+
+Fonte: [Escola de Contas do TCE-MG — fluxo do PCA 2026](https://escoladecontas.tce.mg.gov.br/coordenadoria-esclarece-fluxo-do-plano-de-contratacoes-anual-2026/).
+
+## 14. O que já podemos inferir com mais confiança
+
+As evidências acima sustentam algumas **inferências de produto**, não fatos específicos da Candangolândia:
+
+### 14.1 O PCA é frequentemente um processo de coleta e consolidação, não apenas de cadastro
+
+Diversos órgãos distribuem a responsabilidade entre unidades requisitantes/demandantes, áreas técnicas, gestores e uma autoridade final. Isso aparece no DF, no Governo Federal, em São Paulo e em outros entes.
+
+### 14.2 Planilhas e documentos intermediários são comuns
+
+Há evidências explícitas de planilhas auxiliares, DFDs, documentos consolidadores e propostas internas. Isso reforça a necessidade de o PCA-Auto ter uma camada de **entrada e normalização**, e não assumir que o primeiro dado já chega no formato do e-ComprasDF.
+
+### 14.3 Consolidação e agrupamento podem ser uma parte importante do problema
+
+O DF atribui explicitamente a gestores a consolidação/agrupamento; outras normas também falam em agregação de demandas de mesma natureza. Isso cria uma oportunidade para validar funcionalidades de deduplicação, agrupamento e consolidação.
+
+### 14.4 O número de pessoas envolvidas pode ser maior que um
+
+A legislação do e-ComprasDF permite vários gestores e vários responsáveis pelo preenchimento, e organizações maiores distribuem o trabalho em equipes. Entretanto, **não encontrei dados públicos confiáveis que indiquem quantas pessoas participam, em média, de um PCA em uma Administração Regional**.
+
+### 14.5 Não encontrei métricas públicas confiáveis de tempo e retrabalho
+
+A pesquisa encontrou descrições de procedimentos, papéis, documentos, campos, cronogramas e materiais de apoio, mas não encontrou uma base pública robusta informando, por exemplo:
+
+- horas médias por PCA;
+- minutos por item;
+- taxa de retrabalho;
+- número médio de devoluções;
+- quantidade média de correções por item.
+
+Portanto, essas métricas continuam sendo **dados que precisamos obter no piloto ou por entrevista/observação**.
+
+## 15. Hipótese operacional revisada
+
+Com a pesquisa ampliada, a hipótese de processo do PCA-Auto pode ser melhor representada como:
+
+```text
+Unidades / setores demandantes
+          ↓
+   coleta da necessidade
+          ↓
+  documentos / planilhas / SEI
+          ↓
+     padronização
+          ↓
+      consolidação
+          ↓
+  agrupamento / conflitos
+          ↓
+  validação / prioridade
+          ↓
+       aprovação
+          ↓
+      e-ComprasDF
+          ↓
+   publicação / execução
+```
+
+A parte crítica para o produto é que o **bloco anterior ao e-ComprasDF parece ser suficientemente rico para constituir um produto próprio**, mas isso ainda precisa ser comprovado no ambiente da Candangolândia.
+
+## 16. Perguntas prioritárias para entrevistas na Candangolândia
+
+A pesquisa externa permite reduzir bastante a quantidade de perguntas locais. O roteiro recomendado passa a ser:
+
+1. Quantas unidades/setores da RA-CAND enviam demandas para o PCA?
+2. Cada setor envia uma planilha/DFD próprio ou existe um formulário único?
+3. O que chega primeiro: Excel, SEI, e-mail ou outro documento?
+4. Quem recebe e consolida essas demandas?
+5. Há uma planilha-mãe ou documento consolidador?
+6. Quantas pessoas efetivamente inserem itens no e-ComprasDF?
+7. Existe mais de um Gestor do PCA?
+8. Quem faz a conferência dos códigos do catálogo?
+9. Quantos itens normalmente são devolvidos para correção?
+10. Quantos itens precisam de nova catalogação?
+11. Como as demandas semelhantes são agrupadas?
+12. Como prioridade e data desejada são definidas?
+13. Há conferência orçamentária antes do cadastro?
+14. Quem aprova e quem devolve para ajustes?
+15. Como um ajuste volta ao servidor que originou a demanda?
+16. Quanto tempo leva o processo completo?
+17. Quanto desse tempo é gasto em planilhas/documentos e quanto no e-ComprasDF?
+18. Quais são os três erros mais comuns?
+19. Qual etapa mais gera retrabalho?
+20. O que o servidor gostaria que fosse automático sem perder o controle humano?
+
+Essas perguntas devem alimentar diretamente `docs/current-process.md`, `docs/requirements.md`, `docs/excel-format.md` e `docs/validation.md` quando houver evidência local.
