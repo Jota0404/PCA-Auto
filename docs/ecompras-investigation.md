@@ -4,13 +4,17 @@
 
 A documentação do projeto confirmou os seguintes pontos:
 
-- catálogo observado em `https://portal.compras.df.gov.br/ecompras/Consultantes/Pesquisar`;
+- catálogo observado em `https://portal.compras.df.gov.br/ecompras/Consultantes/Pesquisar` em investigação anterior;
 - consulta observada por `GET` com retorno `text/html`;
 - item observado com código de catálogo e `ItemId` interno;
 - página de inclusão observada em `/ecompras/consultaitens/IncluirItem/?ItemId=...`;
 - formulário de inclusão observado com `POST` e `multipart/form-data`;
 - `fnSubmit` valida o formulário e posteriormente chama o `submit()` normal do HTML;
 - a tentativa observada de inclusão retornou mensagem de duplicidade no portal.
+
+### Ressalva sobre a rota histórica
+
+A rota `/ecompras/Consultantes/Pesquisar` foi observada em uma investigação anterior, mas uma tentativa HTTP direta posterior retornou `404`. Portanto, ela **não deve ser tratada como rota pública ou estável** sem nova confirmação.
 
 ## Ainda não confirmado
 
