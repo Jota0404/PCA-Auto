@@ -140,6 +140,8 @@ Consulte [DER](./docs/04-der.md) e [Dicionário de Dados](./docs/05-dicionario-d
 | [Dicionário de Dados](./docs/05-dicionario-de-dados.md) | campos e tipos persistidos |
 | [User Stories](./docs/06-user-stories.md) | histórias para backlog |
 | [Plano de Testes](./docs/07-plano-de-testes.md) | testes e critérios de aceitação |
+| [Lacunas e Evidências](./docs/08-lacunas-evidencias.md) | o que ainda falta definir, validar ou comprovar |
+| [Onboarding de Desenvolvedor](./docs/09-onboarding-desenvolvedor.md) | guia de entrada para novos desenvolvedores |
 
 ## 10. O que ainda falta
 
@@ -161,7 +163,7 @@ A documentação já possui um registro formal das lacunas do produto. As princi
 
 Consulte [Lacunas e Evidências](./docs/08-lacunas-evidencias.md) para a lista completa, prioridade e evidência necessária para fechar cada ponto.
 
-## 10. Documentação técnica complementar
+## 11. Documentação técnica complementar
 
 - [Status da documentação](./docs/status.md)
 - [Produto](./docs/product.md)
@@ -186,7 +188,7 @@ Consulte [Lacunas e Evidências](./docs/08-lacunas-evidencias.md) para a lista c
 - [Riscos](./docs/risks.md)
 - [ADRs](./docs/decisions/)
 
-## 11. Estrutura do projeto
+## 12. Estrutura do projeto
 
 ```text
 app/                    interface e rotas Next.js
@@ -200,7 +202,7 @@ scripts/                investigação e simulação
 docs/                   documentação
 ```
 
-## 12. Estado atual
+## 13. Estado atual
 
 O projeto está em fase de validação do produto e consolidação da especificação.
 
@@ -226,7 +228,7 @@ O projeto está em fase de validação do produto e consolidação da especifica
 - critério técnico final de sucesso;
 - infraestrutura de produção.
 
-## 13. Como começar
+## 14. Como começar
 
 ```bash
 npm install
@@ -242,9 +244,9 @@ npm run db:generate
 npm run db:migrate
 ```
 
-Consulte primeiro a [Visão e Escopo](./docs/01-visao-e-escopo.md), a [ERS](./docs/02-ers.md) e o [DAS](./docs/03-das.md).
+Para entender o projeto antes de alterar código, leia primeiro o [Onboarding de Desenvolvedor](./docs/09-onboarding-desenvolvedor.md).
 
-## 14. Regra documental
+## 15. Regra documental
 
 A documentação é parte do produto.
 
