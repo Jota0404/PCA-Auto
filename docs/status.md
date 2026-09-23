@@ -41,6 +41,28 @@ Não preencher lacunas com suposições apenas para deixar a documentação apar
 | PRECISA DE DECISÃO | Há alternativas relevantes ainda não escolhidas |
 | BASELINE | Documentado com nível de detalhe suficiente para registro, mas ainda sujeito a evolução |
 
+## Registro formal das lacunas
+
+O documento [08 — Lacunas e Evidências](./08-lacunas-evidencias.md) é a fonte central para saber o que ainda falta definir, validar ou comprovar.
+
+As lacunas prioritárias são:
+
+1. Excel real da Candangolândia.
+2. Processo operacional real da unidade.
+3. Schema definitivo da entrada.
+4. Regras locais de validação e consolidação.
+5. Perfis, participantes e permissões internas.
+6. Formato definitivo da saída “PCA pronto”.
+7. Baseline de tempo, erros e retrabalho.
+8. Fluxo HTTP autenticado completo do e-ComprasDF.
+9. Resolução exata de \`ItemId\`.
+10. Critério técnico de confirmação da operação.
+11. Máquina de estados definitiva do fluxo externo.
+12. Tratamento completo de rejeições, devoluções e correções.
+13. Segurança e infraestrutura de produção.
+14. Política de retenção.
+15. Metas de volume e desempenho.
+
 ## Mapa da documentação de apoio
 
 | Documento | Status | Próxima evidência / ação |
