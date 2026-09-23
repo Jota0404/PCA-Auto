@@ -2,22 +2,41 @@
 
 Esta pasta contém a documentação técnica e de produto do PCA-Auto.
 
+## Pacote principal para registro do produto
+
+Os oito documentos abaixo formam a documentação central do produto nesta versão:
+
+1. [Documento de Visão e Escopo](./01-visao-e-escopo.md)
+2. [Especificação de Requisitos de Software — ERS](./02-ers.md)
+3. [Documento de Arquitetura de Software — DAS](./03-das.md)
+4. [Diagrama de Entidade-Relacionamento — DER](./04-der.md)
+5. [Dicionário de Dados](./05-dicionario-de-dados.md)
+6. [Roteiro de Histórias de Usuário](./06-user-stories.md)
+7. [Plano de Testes e Critérios de Aceitação](./07-plano-de-testes.md)
+8. [README.md](../README.md)
+
+**Versão do pacote:** 0.9  
+**Data:** 2026-09-22
+
+> O pacote é completo como baseline documental, mas não pretende ocultar lacunas que ainda dependem do processo real da Candangolândia, do Excel real e da comprovação da integração autenticada com o e-ComprasDF.
+
 ## Documento de controle
 
-- [Status da documentação](./status.md) — acompanha o que está definido, o que é hipótese e o que depende de evidência.
+- [Status da documentação](./status.md)
 
-## Produto e requisitos
+## Produto e requisitos de apoio
 
 - [Product](./product.md)
-- [Requirements](./requirements.md)
+- [Requirements — apoio/legado](./requirements.md)
 - [Domain](./domain.md)
 - [Validation](./validation.md)
 - [Human Review](./review.md)
 - [Excel Format](./excel-format.md)
+- [Current Process](./current-process.md)
 
 ## Arquitetura e integração
 
-- [Architecture](./architecture.md)
+- [Architecture — apoio detalhado](./architecture.md)
 - [e-ComprasDF — Status](./ecompras-integration-status.md)
 - [e-ComprasDF — Investigation](./ecompras-investigation.md)
 - [e-ComprasDF — Network Capture Runbook](./network-capture-runbook.md)
@@ -37,7 +56,7 @@ Esta pasta contém a documentação técnica e de produto do PCA-Auto.
 
 ## Decisões
 
-Os principais ADRs estão em `decisions/`.
+Os principais ADRs estão em [decisions/](./decisions/).
 
 ## Regra documental
 
