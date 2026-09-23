@@ -1,7 +1,7 @@
 # PCA Auto — Onboarding de Desenvolvedor
 
 **Versão:** 0.9  
-**Status:** guia de entrada baseado exclusivamente na documentação e no estado registrado do repositório  
+**Status:** guia de entrada baseado na documentação e no estado atual conhecido do código  
 **Data:** 2026-09-23
 
 ## 1. Para que serve este documento
@@ -12,16 +12,16 @@ Ele explica:
 - qual é o objetivo do produto;
 - qual é o fluxo pretendido;
 - qual arquitetura foi definida;
-- quais partes estão documentadas;
+- quais partes já estão implementadas;
 - quais partes ainda não podem ser consideradas definitivas;
 - onde encontrar cada informação.
 
-Este documento **não cria requisitos, regras ou comportamentos novos**. Quando uma informação não está comprovada na documentação do projeto, ela é tratada como pendente.
+Este documento **não cria requisitos, regras ou comportamentos novos**. Quando uma informação não está comprovada, ela é tratada como pendente.
 
 ## 2. Leia nesta ordem
 
 1. [01 — Visão e Escopo](./01-visao-e-escopo.md) — o que é, problema, público e limites.
-2. [02 — ERS](./02-ers.md) — o que o sistema deve fazer e suas restrições.
+2. [02 — ERS](./02-ers.md) — requisitos funcionais, regras e restrições.
 3. [03 — DAS](./03-das.md) — como os componentes se organizam.
 4. [04 — DER](./04-der.md) e [05 — Dicionário de Dados](./05-dicionario-de-dados.md) — como os dados estão modelados.
 5. [06 — User Stories](./06-user-stories.md) — como as funcionalidades são quebradas.
@@ -37,7 +37,7 @@ A visão registrada para o produto é:
 
 Fluxo conceitual documentado:
 
-~~~text
+```text
 Entrada de dados
     ↓
 Importação
@@ -55,7 +55,7 @@ Consolidação
 PCA pronto
     ↓
 Execução controlada no e-ComprasDF
-~~~
+```
 
 A execução integrada é uma evolução. O produto deve conseguir entregar valor no Nível 1 sem depender da automação do sistema governamental.
 
@@ -65,7 +65,7 @@ O e-ComprasDF permanece como sistema oficial.
 
 A arquitetura registrada utiliza:
 
-~~~text
+```text
 app/
     ↓
 src/application/
@@ -73,7 +73,7 @@ src/application/
 src/domain/
     ↓
 src/infrastructure/
-~~~
+```
 
 ### app/
 
@@ -117,60 +117,59 @@ As versões atualmente registradas no package.json são a referência para o est
 
 O schema Prisma atualmente documentado possui:
 
-~~~text
+```text
 Pca
  ├── PcaItem
  │      └── CatalogItem (opcional)
  │
  └── Execution
         └── ExecutionItem
-~~~
+```
 
-As entidades e relações estão descritas no DER e os campos no Dicionário de Dados.
+O schema atual não possui uma entidade `Batch` separada. O termo pode aparecer em documentação histórica/conceitual, mas o modelo persistido vigente usa `Execution` e `ExecutionItem`.
 
 Os estados registrados são preliminares. Não assumir que o modelo atual já representa o modelo definitivo do produto.
 
-## 7. Entrada de dados
+## 7. O que já existe no código
+
+O estado atual conhecido inclui:
+
+- importação XLSX;
+- normalização;
+- persistência da importação;
+- validação básica;
+- endpoint interno `POST /api/pca/import`;
+- protótipo de frontend.
+
+Esses componentes devem ser confrontados com o processo real quando a validação do produto exigir.
+
+## 8. Entrada de dados
 
 O Excel é a entrada inicial documentada.
 
 Princípio:
 
-~~~text
+```text
 Código fornecido pela origem
           ↓
 preservado pelo PCA Auto
           ↓
 validação / processamento
-~~~
+```
 
 O sistema não deve substituir silenciosamente o código fornecido por outro código encontrado por descrição.
 
 O contrato do Excel ainda precisa ser validado com um arquivo real da Candangolândia. Consulte [excel-format.md](./excel-format.md).
 
-## 8. Validação e revisão
+## 9. Validação e revisão
 
-A validação foi definida como uma etapa separada da importação:
+A validação foi definida como uma etapa separada da importação.
 
-~~~text
-Importação
-    ↓
-Normalização
-    ↓
-Validação
-    ↓
-Pendências
-    ↓
-Revisão humana
-~~~
+A implementação atual já possui regras básicas. Consulte [validation.md](./validation.md) para distinguir as regras implementadas das regras ainda dependentes do processo real.
 
-A taxonomia e as regras definitivas ainda não estão fechadas.
+A revisão humana continua parcialmente definida e depende de validação com usuário operacional.
 
-Consulte [validation.md](./validation.md) e [review.md](./review.md).
-
-Não assumir que uma regra descrita como hipótese já está implementada ou definitivamente aprovada.
-
-## 9. Integração com o e-ComprasDF
+## 10. Integração com o e-ComprasDF
 
 Esta é uma das partes que exige mais cuidado.
 
@@ -187,23 +186,23 @@ A investigação já documentou observações sobre o portal, mas ainda existem 
 - fluxo completo de lançamento;
 - comportamento em erro.
 
-Por isso, a integração real permanece condicionada à comprovação desses pontos.
+A integração real permanece condicionada à comprovação desses pontos.
 
 Consulte [ecompras-integration-status.md](./ecompras-integration-status.md), [ecompras-investigation.md](./ecompras-investigation.md), [execution-flow.md](./execution-flow.md) e [network-capture-runbook.md](./network-capture-runbook.md).
 
 **Não implemente comportamento do portal por suposição.**
 
-## 10. Regra fundamental de conclusão
+## 11. Regra fundamental de conclusão
 
 Um dos princípios centrais é:
 
-~~~text
+```text
 tentativa de operação ≠ operação concluída
-~~~
+```
 
 O estado COMPLETED só deve representar uma conclusão comprovada.
 
-## 11. O que ainda está em aberto
+## 12. O que ainda está em aberto
 
 [08 — Lacunas e Evidências](./08-lacunas-evidencias.md) é a fonte central das pendências.
 
@@ -227,33 +226,27 @@ Entre as lacunas registradas estão:
 
 Esses pontos **não devem ser preenchidos pelo desenvolvedor com suposições**.
 
-## 12. Onde alterar cada tipo de informação
+## 13. Onde alterar cada tipo de informação
 
 ### Produto
-
 Visão e Escopo, ERS, User Stories e Roadmap.
 
 ### Regra de negócio
-
 ERS, Domain, Validation e ADRs.
 
 ### Arquitetura
-
 DAS, Architecture e ADRs.
 
 ### Banco
-
 DER, Dicionário de Dados e prisma/schema.prisma.
 
 ### e-ComprasDF
-
 Status da integração, Investigação, Runbook de captura e Fluxo de execução.
 
 ### Testes
-
 Plano de Testes, Testing e requisito/User Story correspondente.
 
-## 13. O que não fazer
+## 14. O que não fazer
 
 Não:
 
@@ -267,7 +260,7 @@ Não:
 - transformar hipótese em requisito sem evidência;
 - alterar o modelo de dados apenas para antecipar funcionalidades futuras.
 
-## 14. Como atualizar a documentação
+## 15. Como atualizar a documentação
 
 Quando uma nova informação for comprovada:
 
@@ -280,7 +273,7 @@ Quando uma nova informação for comprovada:
 
 A documentação deve acompanhar o código.
 
-## 15. Primeiro ponto de partida para desenvolvimento
+## 16. Primeiro ponto de partida para desenvolvimento
 
 O roadmap e o backlog registrados são orientados por evidência.
 
@@ -290,13 +283,13 @@ A prioridade atual está relacionada a:
 2. observar o processo real;
 3. fechar o schema de entrada;
 4. medir o processo;
-5. implementar/validar importação, normalização e regras reais;
+5. validar importação, normalização e regras reais;
 6. entregar o Nível 1;
 7. somente depois avançar na investigação definitiva da integração externa.
 
 Consulte [roadmap.md](./roadmap.md) e [backlog.md](./backlog.md).
 
-## 16. Regra deste documento
+## 17. Regra deste documento
 
 Este guia é um índice de orientação, não uma nova fonte de requisitos.
 
