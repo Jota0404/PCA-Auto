@@ -53,6 +53,15 @@ Não preencher lacunas com suposições apenas para deixar a documentação apar
 
 ## O que a pesquisa externa já fechou
 
+Além do fluxo normativo do DF, a pesquisa comparativa em outros órgãos do DF, Governo Federal, Espírito Santo, Roraima, São Paulo e Minas Gerais encontrou evidências de que:
+
+- o PCA costuma receber demandas de múltiplas unidades requisitantes/demandantes;
+- diferentes organizações utilizam DFDs, planilhas e documentos intermediários;
+- existe frequentemente uma camada de consolidação antes da aprovação final;
+- agrupamento/integração de demandas de mesma natureza é uma atividade relevante;
+- vários órgãos distribuem o preenchimento entre mais de um servidor;
+- algumas organizações mantêm oficinas, materiais de apoio ou equipes específicas para orientar as unidades.
+
 O processo normativo do DF está suficientemente documentado para construir uma **referência AS-IS**:
 
 1. unidades/órgãos identificam e formalizam necessidades;
@@ -64,22 +73,25 @@ O processo normativo do DF está suficientemente documentado para construir uma 
 7. após finalização, o sistema publica no Portal de Compras do DF e envia ao PNCP, conforme os critérios aplicáveis;
 8. o PCA pode ser revisto/reaberto conforme as hipóteses normativas.
 
-Consulte `docs/current-process.md` para as fontes e a separação entre norma do DF, exemplos de processos internos e hipóteses locais.
+Consulte `docs/current-process.md` para as fontes, evidências comparativas e a separação entre norma do DF, exemplos de processos de outros órgãos e hipóteses locais.
 
 ## O que a pesquisa NÃO fechou
 
-Ainda não sabemos:
+Mesmo com a pesquisa ampliada, ainda não há evidência pública suficiente para afirmar:
 
 - como a Candangolândia coleta as demandas internamente;
 - se usa Excel, SEI, e-mail ou outro mecanismo;
 - quem consolida as demandas localmente;
-- quantas pessoas participam;
+- quantas pessoas participam do PCA da RA-CAND;
 - quantidade real de itens;
 - tempo por etapa;
 - volume de retrabalho;
+- taxa de devoluções;
 - quantidade de itens sem catálogo;
 - esforço de aprovação e correção;
 - quais partes do processo geram a maior dor.
+
+Também não foram encontrados dados públicos confiáveis de horas médias, minutos por item ou taxa média de retrabalho que permitam substituir a medição do piloto.
 
 ## Gates de maturidade
 
