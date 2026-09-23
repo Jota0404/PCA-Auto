@@ -1,7 +1,7 @@
 # PCA-Auto — Domínio
 
 **Status:** PARCIALMENTE DEFINIDO  
-**Última atualização:** 2026-09-22
+**Última atualização:** 2026-09-23
 
 ## 1. Objetivo
 
@@ -40,16 +40,15 @@ Conceitos já conhecidos:
 - modalidade;
 - estado de processamento.
 
-### Batch
+### Execution
 
-Representa uma unidade de processamento/importação/execução em lote.
+Representa uma execução persistida do processamento.
 
-Serve para permitir:
+### ExecutionItem
 
-- rastreabilidade;
-- retomada;
-- agrupamento de erros;
-- comparação entre execuções.
+Representa a associação de um item do PCA a uma execução e seu resultado/status dentro dessa execução.
+
+O schema Prisma vigente utiliza `Execution` e `ExecutionItem`. O termo conceitual `Batch` não deve ser tratado como entidade persistida independente enquanto não houver decisão específica que justifique isso.
 
 ## 3. Estados preliminares
 
@@ -78,7 +77,7 @@ ERROR
 
 Também preliminar.
 
-### Batch
+### Execution
 
 ```
 CREATED
