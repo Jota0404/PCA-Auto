@@ -1,11 +1,13 @@
-# PCA-Auto — Requisitos
+# PCA-Auto — Requisitos de apoio e histórico
 
-**Status:** PARCIALMENTE DEFINIDO  
-**Última atualização:** 2026-09-22
+**Status:** DOCUMENTO DE APOIO / SUPLANTADO PELA ERS
+**Última atualização:** 2026-09-23
 
-> Este documento registra requisitos que já podem orientar o MVP e marca explicitamente os que ainda dependem de validação no piloto.
+> Este documento preserva requisitos e observações registrados anteriormente no projeto. A especificação normativa de requisitos vigente é `docs/02-ers.md`.
+>
+> Os identificadores `RF-XXX` deste documento são históricos e não devem ser usados para novas referências. Para novos requisitos e referências formais, usar exclusivamente os IDs da ERS.
 
-## 1. Requisitos funcionais já identificados
+## 1. Requisitos funcionais registrados anteriormente
 
 ### RF-001 — Importar Excel
 
@@ -91,8 +93,6 @@ O sistema deve ser capaz de sinalizar que um item não foi encontrado no catálo
 
 **Status:** HIPÓTESE DE PRODUTO / PRECISA DE VALIDAÇÃO.
 
-A Portaria nº 421/2026 prevê solicitação de catalogação no próprio e-ComprasDF, com resultados possíveis de atendimento, devolução para ajustes ou negativa.
-
 ## 3. Requisitos para execução futura
 
 ### RF-012 — Resolver identidade técnica
@@ -169,6 +169,8 @@ Esses requisitos devem ser especificados quando houver evidência suficiente par
 
 ## 7. Rastreabilidade
 
+Para novos requisitos, usar exclusivamente a ERS como fonte formal de identificadores.
+
 Todo requisito novo deve ter:
 
 - identificador;
@@ -178,3 +180,7 @@ Todo requisito novo deve ter:
 - teste ou evidência esperada quando aplicável.
 
 Nenhuma regra de negócio deve ser criada apenas porque facilita a implementação.
+
+## Relação com a ERS
+
+`docs/02-ers.md` é a referência formal vigente. Quando houver diferença entre este documento histórico e a ERS, a ERS deve ser seguida e a diferença deve ser corrigida neste documento em vez de criar um terceiro identificador.
