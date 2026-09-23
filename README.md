@@ -155,7 +155,7 @@ A documentação já possui um registro formal das lacunas do produto. As princi
 - formato definitivo da saída “PCA pronto”;
 - baseline de tempo, erros e retrabalho;
 - fluxo HTTP autenticado completo do e-ComprasDF;
-- resolução exata de \`ItemId\`;
+- resolução exata de `ItemId`;
 - critério técnico de confirmação da operação;
 - máquina de estados definitiva do fluxo externo;
 - segurança e infraestrutura de produção;
@@ -167,7 +167,7 @@ Consulte [Lacunas e Evidências](./docs/08-lacunas-evidencias.md) para a lista c
 
 - [Status da documentação](./docs/status.md)
 - [Produto](./docs/product.md)
-- [Requisitos legados/de apoio](./docs/requirements.md)
+- [Requisitos de apoio/históricos](./docs/requirements.md)
 - [Domínio](./docs/domain.md)
 - [Validação](./docs/validation.md)
 - [Revisão humana](./docs/review.md)
@@ -190,12 +190,11 @@ Consulte [Lacunas e Evidências](./docs/08-lacunas-evidencias.md) para a lista c
 
 ## 12. Estrutura do projeto
 
-```text
+```
 app/                    interface e rotas Next.js
 src/domain/             regras e tipos centrais
 src/application/        casos de uso/orquestração
 src/infrastructure/     banco, Excel, HTTP e e-ComprasDF
-src/services/           serviços de apoio
 prisma/                 schema e migrações
 tests/                  testes
 scripts/                investigação e simulação
@@ -205,6 +204,17 @@ docs/                   documentação
 ## 13. Estado atual
 
 O projeto está em fase de validação do produto e consolidação da especificação.
+
+### Já implementado no código
+
+- importação XLSX;
+- normalização;
+- persistência da importação;
+- regras básicas de validação;
+- endpoint interno de importação;
+- protótipo de frontend.
+
+Esses componentes ainda precisam ser confrontados com dados/processo reais quando aplicável.
 
 ### Já definido
 
@@ -232,6 +242,7 @@ O projeto está em fase de validação do produto e consolidação da especifica
 
 ```bash
 npm install
+npm run db:generate
 npm run typecheck
 npm test
 npm run dev
@@ -240,7 +251,6 @@ npm run dev
 Para trabalhar com banco:
 
 ```bash
-npm run db:generate
 npm run db:migrate
 ```
 
