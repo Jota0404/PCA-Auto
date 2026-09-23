@@ -3,7 +3,7 @@
 > Documento vivo de governança técnica. Ele registra o que já está definido, o que ainda é hipótese e quais evidências precisam ser obtidas antes de fechar a documentação definitiva.
 
 **Status geral:** baseline documental 0.9 + validação do produto e consolidação técnica  
-**Última atualização:** 2026-09-22
+**Última atualização:** 2026-09-23
 
 ## Pacote documental principal
 
@@ -17,6 +17,8 @@
 | 06 — User Stories | BASELINE | backlog funcional inicial |
 | 07 — Plano de Testes | BASELINE | critérios gerais e casos principais |
 | README.md | BASELINE | entrada principal do projeto |
+| 08 — Lacunas e Evidências | CONTROLE | registro central do que ainda falta |
+| 09 — Onboarding de Desenvolvedor | BASELINE | guia de entrada baseado na documentação existente |
 
 ## Regra de promoção para DEFINIDO
 
