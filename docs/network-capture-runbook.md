@@ -1,5 +1,9 @@
 # Runbook de captura de rede do catálogo
 
+**Status:** PRECISA DE PESQUISA  
+**Última atualização:** 2026-09-23
+
+
 Esta etapa é exclusivamente investigativa. O objetivo é registrar o request real produzido pelo portal durante uma busca manual por um código conhecido.
 
 ## Procedimento
