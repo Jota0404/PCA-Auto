@@ -246,7 +246,15 @@ Status da integração, Investigação, Runbook de captura e Fluxo de execução
 ### Testes
 Plano de Testes, Testing e requisito/User Story correspondente.
 
-## 14. Dívida técnica conhecida\n\nExiste atualmente um arquivo `src/application/execution/single-item-executor.ts` que não faz parte do caminho de execução atualmente utilizado. Ele deve ser tratado como código não confirmado para uso, e não como implementação oficial.\n\nAlém disso, esse executor retorna `status: "COMPLETED"` no modo `SIMULATION`; isso precisa ser revisado antes de qualquer reutilização, porque a simulação não deve ser confundida com conclusão externa.\n\nA decisão de remover ou reaproveitar esse arquivo ainda não foi tomada.\n\n## 15. O que não fazer
+## 14. Dívida técnica conhecida
+
+Existe atualmente um arquivo `src/application/execution/single-item-executor.ts` que não faz parte do caminho de execução atualmente utilizado. Ele deve ser tratado como código não confirmado para uso, e não como implementação oficial.
+
+Além disso, esse executor retorna `status: "COMPLETED"` no modo `SIMULATION`; isso precisa ser revisado antes de qualquer reutilização, porque a simulação não deve ser confundida com conclusão externa.
+
+A decisão de remover ou reaproveitar esse arquivo ainda não foi tomada.
+
+## 15. O que não fazer
 
 Não:
 
