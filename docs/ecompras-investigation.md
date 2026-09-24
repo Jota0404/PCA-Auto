@@ -1,5 +1,8 @@
 # Investigação da integração com o e-ComprasDF
 
+**Status:** PRECISA DE PESQUISA  
+**Última atualização:** 2026-09-23
+
 ## Confirmado antes da implementação
 
 A documentação do projeto confirmou os seguintes pontos:
