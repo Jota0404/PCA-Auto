@@ -62,7 +62,8 @@ Não preencher lacunas com suposições apenas para deixar a documentação apar
 | PRECISA DE VALIDAÇÃO | Depende de teste/observação no produto ou no órgão piloto |
 | PRECISA DE PESQUISA | Depende de investigação externa |
 | PRECISA DE DECISÃO | Há alternativas relevantes ainda não escolhidas |
-| BASELINE | Documentado com nível de detalhe suficiente para registro, mas ainda sujeito a evolução |\n| APOIO/HISTÓRICO | Documento mantido para preservar contexto anterior; não é fonte formal vigente |
+| BASELINE | Documentado com nível de detalhe suficiente para registro, mas ainda sujeito a evolução |
+| APOIO/HISTÓRICO | Documento mantido para preservar contexto anterior; não é fonte formal vigente |
 
 ## Registro formal das lacunas
 
@@ -93,6 +94,9 @@ As lacunas prioritárias são:
 | product.md | PARCIALMENTE DEFINIDO | validar problema, proposta de valor e escopo do Nível 1 |
 | current-process.md | PESQUISA CONCLUÍDA / PRECISA DE VALIDAÇÃO LOCAL | comparar referência normativa com o processo real |
 | requirements.md | APOIO/HISTÓRICO | usar somente como registro anterior; ERS é a fonte formal |
+| audit.md | PARCIALMENTE DEFINIDO | acompanhar a evolução da trilha de auditoria de negócio |
+| ecompras-investigation.md | PRECISA DE PESQUISA | preservar evidências e lacunas da investigação do portal |
+| network-capture-runbook.md | PRECISA DE PESQUISA | executar novas capturas quando a investigação do portal avançar |
 | domain.md | PARCIALMENTE DEFINIDO | validar entidades e estados com dados reais |
 | architecture.md | DEFINIDO (base) | detalhar somente quando houver necessidade |
 | excel-format.md | PRECISA DE VALIDAÇÃO | obter Excel real e fechar schema versionado |
@@ -151,7 +155,12 @@ Consulte current-process.md e ecompras-integration-status.md para as evidências
 7. **Gate 7 — Operação:** suporte, segurança e implantação são sustentáveis.
 8. **Gate 8 — Escala:** existe evidência para multi-órgão e evolução enterprise.
 
-## Dívida técnica conhecida\n\n- `src/application/execution/single-item-executor.ts` existe no repositório, mas não faz parte do caminho de execução atualmente referenciado pelo restante do sistema. Sua remoção ou reaproveitamento ainda não foi decidido.\n- Antes de reutilizar esse executor, revisar seu resultado de `SIMULATION`, pois ele retorna `status: "COMPLETED"`, o que não corresponde ao princípio documentado de que simulação não representa conclusão externa.\n\n## Regra de manutenção
+## Dívida técnica conhecida
+
+- `src/application/execution/single-item-executor.ts` existe no repositório, mas não faz parte do caminho de execução atualmente referenciado pelo restante do sistema. Sua remoção ou reaproveitamento ainda não foi decidido.
+- Antes de reutilizar esse executor, revisar seu resultado de `SIMULATION`, pois ele retorna `status: "COMPLETED"`, o que não corresponde ao princípio documentado de que simulação não representa conclusão externa.
+
+## Regra de manutenção
 
 Quando uma hipótese for resolvida, atualizar:
 
