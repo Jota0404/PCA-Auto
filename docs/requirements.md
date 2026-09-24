@@ -1,6 +1,6 @@
 # PCA-Auto — Requisitos de apoio e histórico
 
-**Status:** DOCUMENTO DE APOIO / SUPLANTADO PELA ERS
+**Status:** APOIO/HISTÓRICO — SUPLANTADO PELA ERS
 **Última atualização:** 2026-09-23
 
 > Este documento preserva requisitos e observações registrados anteriormente no projeto. A especificação normativa de requisitos vigente é `docs/02-ers.md`.
