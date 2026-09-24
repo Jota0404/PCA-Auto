@@ -18,7 +18,7 @@
 | 07 — Plano de Testes | BASELINE | critérios gerais e casos principais |
 | README.md | BASELINE | entrada principal do projeto |
 | 08 — Lacunas e Evidências | CONTROLE | registro central do que ainda falta |
-| 09 — Onboarding de Desenvolvedor | BASELINE EM REVISÃO | guia de entrada alinhado ao estado atual conhecido do código |
+| 09 — Onboarding de Desenvolvedor | BASELINE | guia de entrada alinhado ao estado atual conhecido do código |
 
 ## Fonte formal de requisitos
 
@@ -62,7 +62,7 @@ Não preencher lacunas com suposições apenas para deixar a documentação apar
 | PRECISA DE VALIDAÇÃO | Depende de teste/observação no produto ou no órgão piloto |
 | PRECISA DE PESQUISA | Depende de investigação externa |
 | PRECISA DE DECISÃO | Há alternativas relevantes ainda não escolhidas |
-| BASELINE | Documentado com nível de detalhe suficiente para registro, mas ainda sujeito a evolução |
+| BASELINE | Documentado com nível de detalhe suficiente para registro, mas ainda sujeito a evolução |\n| APOIO/HISTÓRICO | Documento mantido para preservar contexto anterior; não é fonte formal vigente |
 
 ## Registro formal das lacunas
 
@@ -92,17 +92,17 @@ As lacunas prioritárias são:
 |---|---|---|
 | product.md | PARCIALMENTE DEFINIDO | validar problema, proposta de valor e escopo do Nível 1 |
 | current-process.md | PESQUISA CONCLUÍDA / PRECISA DE VALIDAÇÃO LOCAL | comparar referência normativa com o processo real |
-| requirements.md | PARCIALMENTE DEFINIDO | consolidar com a ERS principal após validação |
+| requirements.md | APOIO/HISTÓRICO | usar somente como registro anterior; ERS é a fonte formal |
 | domain.md | PARCIALMENTE DEFINIDO | validar entidades e estados com dados reais |
 | architecture.md | DEFINIDO (base) | detalhar somente quando houver necessidade |
 | excel-format.md | PRECISA DE VALIDAÇÃO | obter Excel real e fechar schema versionado |
-| validation.md | HIPÓTESE | mapear regras reais e medir falsos positivos |
+| validation.md | PARCIALMENTE DEFINIDO | validar regras existentes e mapear regras reais |
 | review.md | PARCIALMENTE DEFINIDO | validar fluxo com usuário operacional |
 | execution-flow.md | PARCIALMENTE DEFINIDO | fechar após evidência de integração real |
 | ecompras-integration-status.md | PRECISA DE PESQUISA + VALIDAÇÃO | capturar payload, sessão, resposta e confirmação |
 | security.md | HIPÓTESE / PRECISA DE DECISÃO | fechar segurança mínima do piloto |
 | database.md | PARCIALMENTE DEFINIDO | alinhar após estabilização do modelo |
-| api.md | HIPÓTESE | definir somente quando contratos forem necessários |
+| api.md | PARCIALMENTE DEFINIDO | manter endpoint de importação alinhado ao código; definir demais contratos conforme necessidade |
 | testing.md | PARCIALMENTE DEFINIDO | alinhar com o plano de testes principal |
 | deployment.md | HIPÓTESE | decidir antes do ambiente persistente de produção |
 | roadmap.md | PARCIALMENTE DEFINIDO | atualizar pelos gates de evidência |
@@ -151,7 +151,7 @@ Consulte current-process.md e ecompras-integration-status.md para as evidências
 7. **Gate 7 — Operação:** suporte, segurança e implantação são sustentáveis.
 8. **Gate 8 — Escala:** existe evidência para multi-órgão e evolução enterprise.
 
-## Regra de manutenção
+## Dívida técnica conhecida\n\n- `src/application/execution/single-item-executor.ts` existe no repositório, mas não faz parte do caminho de execução atualmente referenciado pelo restante do sistema. Sua remoção ou reaproveitamento ainda não foi decidido.\n- Antes de reutilizar esse executor, revisar seu resultado de `SIMULATION`, pois ele retorna `status: "COMPLETED"`, o que não corresponde ao princípio documentado de que simulação não representa conclusão externa.\n\n## Regra de manutenção
 
 Quando uma hipótese for resolvida, atualizar:
 
