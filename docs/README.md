@@ -2,6 +2,10 @@
 
 Esta pasta contém a documentação técnica e de produto do PCA-Auto.
 
+## Introdução ao domínio
+
+Antes de estudar o produto, leia [00 — O que é um PCA](./00-o-que-e-um-pca.md). Este documento explica, desde o zero, o que é um Plano de Contratações Anual, como as necessidades de diferentes setores entram no planejamento, quais papéis participam do fluxo e onde o e-ComprasDF se encaixa.
+
 ## Pacote principal para registro do produto
 
 Os oito documentos abaixo formam a documentação central de registro do produto nesta versão:
