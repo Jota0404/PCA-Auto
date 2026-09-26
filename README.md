@@ -7,6 +7,14 @@
 **Contexto inicial:** Administração Regional da Candangolândia — DF  
 **Repositório:** Jota0404/PCA-Auto
 
+## Antes de conhecer o PCA Auto
+
+Se você não conhece o processo de compras públicas ou não sabe o que é um Plano de Contratações Anual, leia primeiro:
+
+[**O que é um Plano de Contratações Anual (PCA)**](./docs/00-o-que-e-um-pca.md)
+
+O documento explica, desde o zero, o que é um PCA, como ele se encaixa no planejamento das contratações públicas, quem participa do processo e onde o e-ComprasDF e o PCA Auto entram.
+
 ## 1. O que é
 
 O PCA Auto é um software que organiza o fluxo de dados do PCA antes e, em evolução controlada, durante sua execução no e-ComprasDF.
@@ -133,6 +141,7 @@ Consulte [DER](./docs/04-der.md) e [Dicionário de Dados](./docs/05-dicionario-d
 
 | Documento | Objetivo |
 |---|---|
+| [00 — O que é um PCA](./docs/00-o-que-e-um-pca.md) | introdução ao domínio para quem não conhece o processo de compras públicas |
 | [Visão e Escopo](./docs/01-visao-e-escopo.md) | visão, problema, público e limites |
 | [ERS](./docs/02-ers.md) | requisitos funcionais, regras e restrições |
 | [DAS](./docs/03-das.md) | arquitetura e comunicação entre componentes |
