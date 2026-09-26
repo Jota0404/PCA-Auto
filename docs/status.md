@@ -9,6 +9,7 @@
 
 | Documento | Status | Observação |
 |---|---|---|
+| 00 — O que é um PCA | BASELINE | introdução conceitual ao domínio para novos leitores |
 | 01 — Visão e Escopo | BASELINE | visão, problema, público e fronteiras definidos em nível de produto |
 | 02 — ERS | BASELINE PARCIAL | requisitos estruturados; regras locais e integração ainda possuem lacunas |
 | 03 — DAS | BASELINE | arquitetura em camadas definida; infraestrutura de produção ainda não fechada |
@@ -88,6 +89,8 @@ As lacunas prioritárias são:
 15. Metas de volume e desempenho.
 
 ## Mapa da documentação de apoio
+
+O documento [00 — O que é um PCA](./00-o-que-e-um-pca.md) é uma introdução conceitual ao domínio e não substitui os documentos de requisitos, produto ou processo.
 
 | Documento | Status | Próxima evidência / ação |
 |---|---|---|
